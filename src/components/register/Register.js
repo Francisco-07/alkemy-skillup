@@ -8,7 +8,7 @@ import Swal from 'sweetalert2'
 import { register, reset } from '../../features/auth/authSlice'
 
 const Register = () => {
-  const token = JSON.parse(localStorage.getItem('user'))
+  const token = JSON.parse(localStorage.getItem('token'))
 
   const navigate = useNavigate()
   const dispatch = useDispatch()

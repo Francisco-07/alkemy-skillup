@@ -2,7 +2,7 @@
 // import axios from 'axios'
 
 // // Token
-// const token = JSON.parse(localStorage.getItem('user'))
+// const token = JSON.parse(localStorage.getItem('token'))
 
 // // Get loged user
 

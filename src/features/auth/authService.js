@@ -11,7 +11,7 @@ const login = async ({ email, password }) => {
   const res = await axios.post('auth/login', { email, password })
 
   if (res.data) {
-    localStorage.setItem('user', JSON.stringify(res.data))
+    localStorage.setItem('token', JSON.stringify(res.data))
   }
 
   return res.data
@@ -21,7 +21,7 @@ const login = async ({ email, password }) => {
 
 const getLogedUser = async () => {
   // Token
-  const token = JSON.parse(localStorage.getItem('user'))
+  const token = JSON.parse(localStorage.getItem('token'))
 
   const config = {
     headers: {
@@ -30,15 +30,15 @@ const getLogedUser = async () => {
   }
   const res = await axios.get('auth/me', config)
   if (res.data) {
-    localStorage.setItem('test', JSON.stringify(res.data))
+    localStorage.setItem('user', JSON.stringify(res.data))
   }
   return res.data
 }
 
 // Logout user
 const logout = () => {
+  localStorage.removeItem('token')
   localStorage.removeItem('user')
-  localStorage.removeItem('test')
 }
 
 const authService = {
