@@ -17,15 +17,35 @@ const login = async ({ email, password }) => {
   return res.data
 }
 
+// Get loged user
+
+const getLogedUser = async () => {
+  // Token
+  const token = JSON.parse(localStorage.getItem('user'))
+
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + token.accessToken,
+    },
+  }
+  const res = await axios.get('auth/me', config)
+  if (res.data) {
+    localStorage.setItem('test', JSON.stringify(res.data))
+  }
+  return res.data
+}
+
 // Logout user
 const logout = () => {
   localStorage.removeItem('user')
+  localStorage.removeItem('test')
 }
 
 const authService = {
   register,
   logout,
   login,
+  getLogedUser,
 }
 
 export default authService

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 // Redux
-import { login, reset } from '../../features/auth/authSlice'
+import { login, logedUser, reset } from '../../features/auth/authSlice'
 
 function Login() {
   const token = JSON.parse(localStorage.getItem('user'))
@@ -25,12 +25,13 @@ function Login() {
 
   useEffect(() => {
     if (isError) {
-      Swal.fire(`test ${message}`)
+      Swal.fire(` ${message}`)
       dispatch(reset())
       return
     }
     if (isSuccess) {
       Swal.fire('Login successful')
+      dispatch(logedUser())
     }
 
     if (token?.accessToken) {

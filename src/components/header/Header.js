@@ -35,6 +35,9 @@ const Header = () => {
               logout
             </Link>
           </li>
+          <li>
+            <Link to='/test'>test</Link>
+          </li>
         </ul>
       </nav>
     </header>

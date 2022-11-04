@@ -1,4 +1,11 @@
+// Components
+import Profile from '../../components/profile/Profile'
+
 const HomePage = () => {
-  return <section>homepage wallet alkemy</section>
+  return (
+    <section>
+      <Profile />
+    </section>
+  )
 }
 export default HomePage
