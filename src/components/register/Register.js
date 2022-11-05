@@ -56,7 +56,7 @@ const Register = () => {
       last_name,
       email,
       password,
-      roleId: 2,
+      roleId: 1,
       points: 0,
     }
     if (
