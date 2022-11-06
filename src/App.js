@@ -8,6 +8,7 @@ import LoginPage from './pages/login/LoginPage'
 import RegisterPage from './pages/register/RegisterPage'
 import UsersListPage from './pages/usersList/UsersListPage'
 import UserPage from './pages/user/UserPage'
+import ChargeMoneyPage from './pages/chargeMoney/ChargeMoneyPage'
 
 // Libraries
 import { Routes, Route } from 'react-router-dom'
@@ -22,6 +23,7 @@ function App() {
         <Route path='/register' element={<RegisterPage />} />
         <Route path='/users' element={<UsersListPage />} />
         <Route path='/user' element={<UserPage />} />
+        <Route path='/charge' element={<ChargeMoneyPage />} />
       </Routes>
       <Footer />
     </div>

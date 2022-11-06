@@ -64,6 +64,23 @@ export const getMyAccount = createAsyncThunk(
   }
 )
 
+export const chargeMoney = createAsyncThunk(
+  'charge/account',
+  async (thunkAPI) => {
+    try {
+      return await accountService.chargeMoney()
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
 export const getMyTransactions = createAsyncThunk(
   'transactions/get',
   async (thunkAPI) => {
@@ -154,6 +171,18 @@ export const accountSlice = createSlice({
         state.users = action.payload
       })
       .addCase(getAllUsers.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
+      .addCase(chargeMoney.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(chargeMoney.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+      })
+      .addCase(chargeMoney.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
