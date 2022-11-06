@@ -1,10 +1,13 @@
 // Components
-import Profile from '../../components/profile/Profile'
+import Dashboard from '../../components/dashboard/Dashboard'
+
+// Styles
+import styled from './homePage.module.css'
 
 const HomePage = () => {
   return (
-    <section>
-      <Profile />
+    <section className={styled.container}>
+      <Dashboard />
     </section>
   )
 }

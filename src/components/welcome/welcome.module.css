@@ -1,0 +1,27 @@
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+.logo {
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-weight: 500;
+}
+
+.titleBrand {
+  font-size: 42px;
+}
+
+.container {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.span {
+  margin-top: 2rem;
+}

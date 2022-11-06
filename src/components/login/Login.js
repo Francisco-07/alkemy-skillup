@@ -1,14 +1,15 @@
 // Libraries
 import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
-
+import styled from './login.module.css'
+import Button from '../Button/index'
 // Redux
-import { login, logedUser, reset } from '../../features/auth/authSlice'
+import { login, reset, logedUser } from '../../features/auth/authSlice'
 
 function Login() {
-  const token = JSON.parse(localStorage.getItem('token'))
+  const token = JSON.parse(localStorage.getItem('user'))
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -25,13 +26,14 @@ function Login() {
 
   useEffect(() => {
     if (isError) {
-      Swal.fire(` ${message}`)
+      Swal.fire(`test ${message}`)
       dispatch(reset())
       return
     }
     if (isSuccess) {
       Swal.fire('Login successful')
       dispatch(logedUser())
+      navigate('/')
     }
 
     if (token?.accessToken) {
@@ -69,36 +71,46 @@ function Login() {
 
   return (
     <>
-      <section>
-        <h1>Login</h1>
-        <p>Login and start setting goals</p>
-      </section>
-
+      <h2 className={styled.loginTitle}>Login</h2>
       <section>
         <form onSubmit={onSubmit}>
-          <div>
-            <input
-              type='email'
-              id='email'
-              name='email'
-              value={email}
-              placeholder='Enter your email'
-              onChange={onChange}
-            />
-          </div>
-          <div>
-            <input
-              type='password'
-              id='password'
-              name='password'
-              value={password}
-              placeholder='Enter password'
-              onChange={onChange}
-            />
+          <div className={styled.formInputs}>
+            <div>
+              <div className={styled.labels}>
+                <label>Email</label>
+              </div>
+              <input
+                type='text'
+                id='email'
+                name='email'
+                value={email}
+                onChange={onChange}
+              />
+            </div>
+            <div>
+              <div className={styled.labels}>
+                <label>Password</label>
+              </div>
+              <input
+                type='password'
+                id='password'
+                name='password'
+                value={password}
+                onChange={onChange}
+              />
+            </div>
           </div>
 
-          <div>
-            <button type='submit'>Submit</button>
+          <div className={styled.loginBtn}>
+            <Button text={'LOGIN'} options={{ uppercase: true }} />
+          </div>
+          <div className={styled.loginFooter}>
+            <span>
+              New user?{' '}
+              <Link className={styled.signupLink} to={'/register'}>
+                <b>Sign up</b>
+              </Link>
+            </span>
           </div>
         </form>
       </section>

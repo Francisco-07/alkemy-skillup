@@ -24,19 +24,19 @@ const createAccount = async () => {
 }
 
 // Get all accounts
-const getAllAccounts = async () => {
-  // Token
-  const token = JSON.parse(localStorage.getItem('token'))
+// const getAllAccounts = async () => {
+//   // Token
+//   const token = JSON.parse(localStorage.getItem('token'))
 
-  const config = {
-    headers: {
-      Authorization: 'Bearer ' + token.accessToken,
-    },
-  }
-  const res = await axios.get('accounts', config)
-  console.log(res)
-  return res.data
-}
+//   const config = {
+//     headers: {
+//       Authorization: 'Bearer ' + token.accessToken,
+//     },
+//   }
+//   const res = await axios.get('accounts', config)
+//   console.log(res)
+//   return res.data
+// }
 
 // Get my account
 const getMyAccount = async () => {
@@ -46,12 +46,12 @@ const getMyAccount = async () => {
       Authorization: 'Bearer ' + token.accessToken,
     },
   }
-  // Token
+  // user
   const user = JSON.parse(localStorage.getItem('user'))
   const accounts = await axios.get('accounts', config)
+  const myAccount = accounts.data.data.find((id) => id.userId === user.id)
 
   let count = 2
-  const myAccount = accounts?.data.data.find((id) => id.userId === user.id)
   console.log('accountmy', myAccount)
   while (!myAccount) {
     const res = await axios.get(`accounts/?page=${count}`, config)
@@ -62,16 +62,48 @@ const getMyAccount = async () => {
       return myAccount
     }
   }
+  if (myAccount) {
+    const res = await axios.get(`accounts/${myAccount.id}`, config)
 
-  const res = await axios.get(`accounts/${myAccount.id}`, config)
+    return res.data
+  }
+}
+
+// get my account transactions
+
+const getMyTransactions = async () => {
+  const token = JSON.parse(localStorage.getItem('token'))
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + token.accessToken,
+    },
+  }
+
+  const res = await axios.get('transactions', config)
+  console.log(res)
+  return res.data
+}
+
+// Get all users
+
+const getAllUsers = async () => {
+  const token = JSON.parse(localStorage.getItem('token'))
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + token.accessToken,
+    },
+  }
+
+  const res = await axios.get('users', config)
   console.log(res)
   return res.data
 }
 
 const accountService = {
   createAccount,
-  getAllAccounts,
   getMyAccount,
+  getMyTransactions,
+  getAllUsers,
 }
 
 export default accountService

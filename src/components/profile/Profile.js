@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import {
   createAccount,
   getMyAccount,
-  getAllAccounts,
 } from '../../features/account/accountSlice'
 
 const Profile = () => {
@@ -16,7 +15,6 @@ const Profile = () => {
     dispatch(createAccount())
   }
   useEffect(() => {
-    dispatch(getAllAccounts())
     dispatch(getMyAccount())
   }, [dispatch])
   return (

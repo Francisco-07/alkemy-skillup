@@ -2,7 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import accountService from './accountService'
 
 const initialState = {
-  accounts: [],
+  users: [],
+  transactions: [],
   myAccount: {},
   isError: false,
   isSuccess: false,
@@ -28,6 +29,7 @@ export const createAccount = createAsyncThunk(
   }
 )
 
+// Get all accounts
 export const getAllAccounts = createAsyncThunk(
   'accounts/get',
   async (thunkAPI) => {
@@ -62,11 +64,40 @@ export const getMyAccount = createAsyncThunk(
   }
 )
 
+export const getMyTransactions = createAsyncThunk(
+  'transactions/get',
+  async (thunkAPI) => {
+    try {
+      return await accountService.getMyTransactions()
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
+export const getAllUsers = createAsyncThunk('users/get', async (thunkAPI) => {
+  try {
+    return await accountService.getAllUsers()
+  } catch (error) {
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString()
+    return thunkAPI.rejectWithValue(message)
+  }
+})
+
 export const accountSlice = createSlice({
   name: 'account',
   initialState,
   reducers: {
-    resetAccountsState: (state) => {
+    resetAccountState: (state) => {
       state.isLoading = false
       state.isSuccess = false
       state.isError = false
@@ -88,19 +119,6 @@ export const accountSlice = createSlice({
         state.isError = true
         state.message = action.payload
       })
-      .addCase(getAllAccounts.pending, (state) => {
-        state.isLoading = true
-      })
-      .addCase(getAllAccounts.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.isSuccess = true
-        state.accounts = action.payload
-      })
-      .addCase(getAllAccounts.rejected, (state, action) => {
-        state.isLoading = false
-        state.isError = true
-        state.message = action.payload
-      })
       .addCase(getMyAccount.pending, (state) => {
         state.isLoading = true
       })
@@ -114,8 +132,34 @@ export const accountSlice = createSlice({
         state.isError = true
         state.message = action.payload
       })
+      .addCase(getMyTransactions.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(getMyTransactions.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.transactions = action.payload
+      })
+      .addCase(getMyTransactions.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
+      .addCase(getAllUsers.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(getAllUsers.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.users = action.payload
+      })
+      .addCase(getAllUsers.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
   },
 })
 
-export const { resetAccountsState } = accountSlice.actions
+export const { resetAccountState } = accountSlice.actions
 export default accountSlice.reducer

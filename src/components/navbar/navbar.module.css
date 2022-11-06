@@ -1,0 +1,40 @@
+.container {
+  height: 100vh;
+  background-color: var(--light-blue);
+  position: fixed;
+  top: 0;
+  color: white;
+  padding: 0 2rem;
+  transition: 0.5s all ease-in-out;
+  z-index: 100;
+}
+
+.btn {
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: 40px;
+  font-weight: bolder;
+  color: black;
+  z-index: 200;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+ul li a {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+svg {
+  fill: white;
+}

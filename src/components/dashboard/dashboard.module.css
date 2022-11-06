@@ -1,0 +1,5 @@
+.transactionsList {
+  display: flex;
+  gap: 0.5rem;
+  border: 1px solid black;
+}
