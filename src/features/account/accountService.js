@@ -84,7 +84,7 @@ const getMyTransactions = async () => {
 
 // charge money
 
-const chargeMoney = async () => {
+const chargeMoney = async (deposit) => {
   const token = JSON.parse(localStorage.getItem('token'))
   const config = {
     headers: {
@@ -102,11 +102,6 @@ const chargeMoney = async () => {
   }
 
   if (myAccount) {
-    const deposit = {
-      type: 'topup',
-      concept: 'Deposit',
-      amount: 200,
-    }
     await axios.post(`accounts/${myAccount.id}`, deposit, config)
 
     return

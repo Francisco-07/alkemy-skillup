@@ -66,9 +66,9 @@ export const getMyAccount = createAsyncThunk(
 
 export const chargeMoney = createAsyncThunk(
   'charge/account',
-  async (thunkAPI) => {
+  async (deposit, thunkAPI) => {
     try {
-      return await accountService.chargeMoney()
+      return await accountService.chargeMoney(deposit)
     } catch (error) {
       const message =
         (error.response &&

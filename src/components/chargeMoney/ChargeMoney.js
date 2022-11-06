@@ -15,7 +15,12 @@ const ChargeMoney = () => {
 
   const charge = (e) => {
     e.preventDefault()
-    dispatch(chargeMoney())
+    const deposit = {
+      type: 'topup',
+      concept: 'Deposit',
+      amount: topup,
+    }
+    dispatch(chargeMoney(deposit))
   }
 
   return (
