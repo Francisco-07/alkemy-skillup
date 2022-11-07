@@ -9,6 +9,7 @@ import RegisterPage from './pages/register/RegisterPage'
 import UsersListPage from './pages/usersList/UsersListPage'
 import UserPage from './pages/user/UserPage'
 import ChargeMoneyPage from './pages/chargeMoney/ChargeMoneyPage'
+import SendMoneyPage from './pages/sendMoney/SendMoneyPage'
 
 // Libraries
 import { Routes, Route } from 'react-router-dom'
@@ -24,6 +25,7 @@ function App() {
         <Route path='/users' element={<UsersListPage />} />
         <Route path='/user' element={<UserPage />} />
         <Route path='/charge' element={<ChargeMoneyPage />} />
+        <Route path='/send' element={<SendMoneyPage />} />
       </Routes>
       <Footer />
     </div>

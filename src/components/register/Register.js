@@ -42,7 +42,7 @@ const Register = () => {
       navigate('/login')
     }
     if (token?.accessToken) {
-      navigate('/login')
+      navigate('/')
     }
 
     dispatch(reset())

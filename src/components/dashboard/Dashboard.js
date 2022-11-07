@@ -10,21 +10,34 @@ import {
   createAccount,
   getMyAccount,
   getMyTransactions,
+  resetAccountProcess,
 } from '../../features/account/accountSlice'
 
 const Dashboard = () => {
-  const { myAccount, transactions } = useSelector((state) => state.account)
+  const { myAccount, transactions, isError, isSuccess } = useSelector(
+    (state) => state.account
+  )
 
   const dispatch = useDispatch()
   const createAcc = () => {
     dispatch(createAccount())
   }
-
   useEffect(() => {
     dispatch(getMyTransactions())
-
-    dispatch(getMyAccount())
+    setTimeout(() => {
+      dispatch(getMyAccount())
+    }, 2000)
   }, [dispatch])
+
+  useEffect(() => {
+    if (isError) {
+      console.log(isError)
+    }
+    if (isSuccess) {
+      console.log(isSuccess)
+    }
+    dispatch(resetAccountProcess())
+  }, [dispatch, isError, isSuccess])
   return (
     <>
       <h1>Dashboard</h1>

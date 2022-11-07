@@ -81,6 +81,23 @@ export const chargeMoney = createAsyncThunk(
   }
 )
 
+export const sendMoney = createAsyncThunk(
+  'send/account',
+  async (payment, thunkAPI) => {
+    try {
+      return await accountService.sendMoney(payment)
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
 export const getMyTransactions = createAsyncThunk(
   'transactions/get',
   async (thunkAPI) => {
@@ -115,6 +132,15 @@ export const accountSlice = createSlice({
   initialState,
   reducers: {
     resetAccountState: (state) => {
+      state.users = []
+      state.transactions = []
+      state.myAccount = {}
+      state.isLoading = false
+      state.isSuccess = false
+      state.isError = false
+      state.message = ''
+    },
+    resetAccountProcess: (state) => {
       state.isLoading = false
       state.isSuccess = false
       state.isError = false
@@ -187,8 +213,20 @@ export const accountSlice = createSlice({
         state.isError = true
         state.message = action.payload
       })
+      .addCase(sendMoney.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(sendMoney.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+      })
+      .addCase(sendMoney.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
   },
 })
 
-export const { resetAccountState } = accountSlice.actions
+export const { resetAccountState, resetAccountProcess } = accountSlice.actions
 export default accountSlice.reducer

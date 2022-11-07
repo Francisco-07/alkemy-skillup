@@ -3,15 +3,12 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 // redux
-import { sendMoney } from '../../features/account/accountSlice'
+import { chargeMoney } from '../../features/account/accountSlice'
 
-const User = () => {
+const SendMoney = () => {
   const [topup, setTopup] = useState(0)
-  const [concept, setConcept] = useState('Payment')
+  const [concept, setConcept] = useState('')
   const dispatch = useDispatch()
-  let query = new URLSearchParams(window.location.search)
-  let testt = query.get('id')
-  console.log(testt)
 
   const conceptArray = ['Payment', 'Bills']
 
@@ -19,14 +16,14 @@ const User = () => {
     setTopup(e.target.value)
   }
 
-  const send = (e) => {
+  const charge = (e) => {
     e.preventDefault()
-    const payment = {
-      type: 'payment',
-      concept: concept,
+    const deposit = {
+      type: 'topup',
+      concept: 'Deposit',
       amount: topup,
     }
-    dispatch(sendMoney(payment))
+    dispatch(chargeMoney(deposit))
   }
 
   return (
@@ -39,7 +36,7 @@ const User = () => {
       }}
     >
       <h2>Charge money</h2>
-      <form onSubmit={send}>
+      <form onSubmit={charge}>
         <div>Amount</div>
         <div>
           <input
@@ -66,4 +63,4 @@ const User = () => {
     </div>
   )
 }
-export default User
+export default SendMoney

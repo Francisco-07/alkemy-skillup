@@ -40,16 +40,16 @@ const createAccount = async () => {
 
 // Get my account
 const getMyAccount = async () => {
-  const token = JSON.parse(localStorage.getItem('token'))
+  const token = await JSON.parse(localStorage.getItem('token'))
   const config = {
     headers: {
       Authorization: 'Bearer ' + token.accessToken,
     },
   }
   // user
-  const user = JSON.parse(localStorage.getItem('user'))
+  const user = await JSON.parse(localStorage.getItem('user'))
   const accounts = await axios.get('accounts', config)
-  const myAccount = accounts.data.data.find((id) => id.userId === user.id)
+  const myAccount = await accounts.data.data.find((id) => id.userId === user.id)
 
   let count = 2
   while (!myAccount) {
@@ -108,6 +108,36 @@ const chargeMoney = async (deposit) => {
   }
 }
 
+// send money
+
+const sendMoney = async (payment) => {
+  let query = new URLSearchParams(window.location.search)
+  let querid = Number(query.get('id'))
+  console.log(querid)
+
+  console.log('queri', querid)
+  const token = JSON.parse(localStorage.getItem('token'))
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + token.accessToken,
+    },
+  }
+  const accounts = await axios.get('accounts', config)
+  let myAccount = await accounts.data.data.find((id) => id.userId === querid)
+  let count = 2
+  while (!myAccount) {
+    const res = await axios.get(`accounts/?page=${count}`, config)
+    myAccount = await res.data.data.find((id) => id.userId === querid)
+    count++
+  }
+
+  if (myAccount) {
+    await axios.post(`accounts/${myAccount.id}`, payment, config)
+
+    return
+  }
+}
+
 // Get all users
 
 const getAllUsers = async () => {
@@ -128,6 +158,7 @@ const accountService = {
   getMyAccount,
   getMyTransactions,
   chargeMoney,
+  sendMoney,
   getAllUsers,
 }
 

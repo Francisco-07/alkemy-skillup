@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 // Redux
 import { logout, reset } from '../../features/auth/authSlice'
+import { resetAccountState } from '../../features/account/accountSlice'
 
 // Styles
 import styled from './navbar.module.css'
@@ -31,6 +32,7 @@ const Navbar = () => {
   const onLogout = () => {
     dispatch(logout())
     dispatch(reset())
+    dispatch(resetAccountState())
     navigate('/')
   }
 

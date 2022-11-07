@@ -9,7 +9,7 @@ import Button from '../Button/index'
 import { login, reset, logedUser } from '../../features/auth/authSlice'
 
 function Login() {
-  const token = JSON.parse(localStorage.getItem('user'))
+  const token = JSON.parse(localStorage.getItem('token'))
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
