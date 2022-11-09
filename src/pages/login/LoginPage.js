@@ -7,7 +7,7 @@ import styled from './loginPage.module.css'
 
 const LoginPage = () => {
   return (
-    <div className={styled.container}>
+    <section className={styled.container}>
       <div className={styled.wrapper}>
         <div>
           <Welcome />
@@ -16,7 +16,7 @@ const LoginPage = () => {
           <Login />
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 export default LoginPage

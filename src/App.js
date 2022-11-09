@@ -10,6 +10,7 @@ import UsersListPage from './pages/usersList/UsersListPage'
 import UserPage from './pages/user/UserPage'
 import ChargeMoneyPage from './pages/chargeMoney/ChargeMoneyPage'
 import TransactionsPage from './pages/transactions/TransactionsPage'
+import ErrorPage from './pages/error/ErrorPage'
 
 // Libraries
 import { Routes, Route } from 'react-router-dom'
@@ -18,15 +19,18 @@ function App() {
   return (
     <div>
       <Navbar />
-      <Routes>
-        <Route exact path='/' element={<HomePage />} />
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/register' element={<RegisterPage />} />
-        <Route path='/users' element={<UsersListPage />} />
-        <Route path='/user' element={<UserPage />} />
-        <Route path='/charge' element={<ChargeMoneyPage />} />
-        <Route path='/transactions' element={<TransactionsPage />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route exact path='/' element={<HomePage />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/register' element={<RegisterPage />} />
+          <Route path='/users' element={<UsersListPage />} />
+          <Route path='/user' element={<UserPage />} />
+          <Route path='/charge' element={<ChargeMoneyPage />} />
+          <Route path='/transactions' element={<TransactionsPage />} />
+          <Route path='*' element={<ErrorPage />} />
+        </Routes>
+      </main>
       <Footer />
     </div>
   )

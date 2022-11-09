@@ -147,6 +147,10 @@ const sendMoney = async (payment) => {
     const res = await axios.get(`accounts/?page=${count}`, config)
     myAccount = await res.data.data.find((id) => id.userId === querid)
     count++
+    console.log(res.data)
+    if (res.data.nextPage === null) {
+      throw Object.assign(new Error('Account not found'), { code: 402 })
+    }
   }
 
   if (myAccount) {

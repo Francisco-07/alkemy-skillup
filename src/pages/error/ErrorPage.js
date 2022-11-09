@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import styled from "./error404.module.css";
+import { Link } from 'react-router-dom'
+import styled from './errorPage.module.css'
 
-function Error404() {
+function ErrorPage() {
   return (
     <>
       <section className={styled.errorPage}>
@@ -14,14 +14,14 @@ function Error404() {
             <span className={`${styled.bold} ${styled.mr}`}>Error 404.</span>
             <span>Not found</span>
 
-            <Link className={`${styled.bold} ${styled.link}`} to={"/dashboard"}>
+            <Link className={`${styled.bold} ${styled.link}`} to={'/dashboard'}>
               <p className={styled.linkText}>Go back to homepage</p>
             </Link>
           </div>
         </div>
       </section>
     </>
-  );
+  )
 }
 
-export default Error404;
+export default ErrorPage

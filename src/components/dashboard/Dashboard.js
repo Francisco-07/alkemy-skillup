@@ -43,7 +43,7 @@ const Dashboard = () => {
       return totalPayment + Number(item.amount)
     }, 0)
 
-  const myCash = totalCharged - totalPayments
+  const myCash = Number(totalCharged) - Number(totalPayments)
 
   useEffect(() => {
     dispatch(getMyTransactions())
@@ -68,7 +68,7 @@ const Dashboard = () => {
           <div className={styled.box}>
             <BsWallet />
             <h4>Total balance</h4>
-            <div>${myCash}</div>
+            <div>{!myCash ? 'loading' : `$${myCash}`}</div>
           </div>
           <div className={styled.box}>
             <AiOutlineDollarCircle />

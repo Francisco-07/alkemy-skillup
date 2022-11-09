@@ -6,9 +6,9 @@ import styled from './transactionsPage.module.css'
 
 const TransactionsPage = () => {
   return (
-    <div className={styled.container}>
+    <section className={styled.container}>
       <Transactions />
-    </div>
+    </section>
   )
 }
 export default TransactionsPage

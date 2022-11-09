@@ -2,6 +2,10 @@
 import User from '../../components/user/User'
 
 const UserPage = () => {
-  return <User />
+  return (
+    <section>
+      <User />
+    </section>
+  )
 }
 export default UserPage

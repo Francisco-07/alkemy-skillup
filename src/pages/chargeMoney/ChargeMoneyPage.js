@@ -1,6 +1,10 @@
 import ChargeMoney from '../../components/chargeMoney/ChargeMoney'
 
 const ChargeMoneyPage = () => {
-  return <ChargeMoney />
+  return (
+    <section>
+      <ChargeMoney />
+    </section>
+  )
 }
 export default ChargeMoneyPage

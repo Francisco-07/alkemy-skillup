@@ -1,7 +1,7 @@
 // Libraries
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 
 // Styles
 import styled from './transactions.module.css'
@@ -9,29 +9,31 @@ import styled from './transactions.module.css'
 // redux
 import {
   getPaginatedTransactions,
-  resetAccountProcess,
-} from '../../features/account/accountSlice'
+  resetTransactionStatus,
+} from '../../features/transaction/transactionSlice'
 
 const Transactions = () => {
-  const [page, setPage] = useState(0)
+  const [nextPage, setNextPage] = useState(0)
+  const [prevPage, setPrevPage] = useState(0)
   const { transactions, isError, isSuccess } = useSelector(
     (state) => state.account
   )
-
+  const [searchParams] = useSearchParams()
   let query = new URLSearchParams(window.location.search)
   let queriPage = Number(query.get('page'))
 
-  const nextPage = transactions.nextPage?.split('=')[1]
-  const prevPage = transactions.previousPage?.split('=')[1]
+  const nextPageQuery = transactions.nextPage?.split('=')[1]
+  const prevPageQuery = transactions.previousPage?.split('=')[1]
 
   const dispatch = useDispatch()
 
-  const nextPageClick = () => {
-    setPage(nextPage)
-  }
-  const prevPageClick = () => {
-    setPage(prevPage)
-  }
+  useEffect(() => {
+    setNextPage(nextPageQuery)
+  }, [setNextPage, nextPageQuery, searchParams])
+
+  useEffect(() => {
+    setPrevPage(prevPageQuery)
+  }, [setPrevPage, prevPageQuery, searchParams])
 
   useEffect(() => {
     dispatch(getPaginatedTransactions(queriPage))
@@ -44,10 +46,10 @@ const Transactions = () => {
     if (isSuccess) {
       console.log(isSuccess)
     }
-    dispatch(resetAccountProcess())
+    dispatch(resetTransactionStatus())
   }, [dispatch, isError, isSuccess])
   return (
-    <div className={styled.container}>
+    <>
       <div className={styled.title}>
         <h1>Transactions</h1>
       </div>
@@ -80,20 +82,16 @@ const Transactions = () => {
 
       <div>
         <div>pagination</div>
-        {prevPage === '1' ? (
-          <Link onClick={prevPageClick} to={`/transactions`}>
-            back
-          </Link>
+        {prevPage === undefined ? null : prevPage === '1' ? (
+          <Link to={`/transactions`}>back</Link>
         ) : (
-          <Link onClick={prevPageClick} to={`/transactions?page=${prevPage}`}>
-            back
-          </Link>
+          <Link to={`/transactions?page=${prevPage}`}>back</Link>
         )}
-        <Link onClick={nextPageClick} to={`/transactions?page=${nextPage}`}>
-          next
-        </Link>
+        {nextPage === undefined ? null : (
+          <Link to={`/transactions?page=${nextPage}`}>next</Link>
+        )}
       </div>
-    </div>
+    </>
   )
 }
 export default Transactions

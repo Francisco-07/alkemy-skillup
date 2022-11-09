@@ -4,35 +4,50 @@ import styled from './usersList.module.css'
 // Libraries
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 
 // Redux
 import {
-  getAllUsers,
   getPaginatedUsers,
+  resetAccountProcess,
 } from '../../features/account/accountSlice'
 
 const UsersList = () => {
-  const [page, setPage] = useState(0)
-  const { users } = useSelector((state) => state.account)
-  const dispatch = useDispatch()
+  const { users, isError, isSuccess } = useSelector((state) => state.account)
 
+  const [nextPage, setNextPage] = useState(0)
+  const [prevPage, setPrevPage] = useState(0)
+
+  const [searchParams] = useSearchParams()
   let query = new URLSearchParams(window.location.search)
   let queriPage = Number(query.get('page'))
 
-  const nextPage = users.nextPage?.split('=')[1]
-  const prevPage = users.previousPage?.split('=')[1]
+  const nextPageQuery = users.nextPage?.split('=')[1]
+  const prevPageQuery = users.previousPage?.split('=')[1]
 
-  const nextPageClick = () => {
-    setPage(nextPage)
-  }
-  const prevPageClick = () => {
-    setPage(prevPage)
-  }
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    setNextPage(nextPageQuery)
+  }, [setNextPage, nextPageQuery, searchParams])
+
+  useEffect(() => {
+    setPrevPage(prevPageQuery)
+  }, [setPrevPage, prevPageQuery, searchParams])
 
   useEffect(() => {
     dispatch(getPaginatedUsers(queriPage))
   }, [dispatch, queriPage])
+
+  useEffect(() => {
+    if (isError) {
+      console.log(isError)
+    }
+    if (isSuccess) {
+      console.log(isSuccess)
+    }
+    dispatch(resetAccountProcess())
+  }, [dispatch, isError, isSuccess])
   return (
     <div>
       <div className={styled.title}>
@@ -53,20 +68,18 @@ const UsersList = () => {
             )
           })}
         </div>
+      </div>
+      <div className={styled.pagination}>
+        <div>pagination</div>
         <div>
-          <div>pagination</div>
-          {prevPage === '1' ? (
-            <Link onClick={prevPageClick} to={`/users`}>
-              back
-            </Link>
+          {prevPage === undefined ? null : prevPage === '1' ? (
+            <Link to={`/users`}>back</Link>
           ) : (
-            <Link onClick={prevPageClick} to={`/users?page=${prevPage}`}>
-              back
-            </Link>
+            <Link to={`/users?page=${prevPage}`}>back</Link>
           )}
-          <Link onClick={nextPageClick} to={`/users?page=${nextPage}`}>
-            next
-          </Link>
+          {nextPage === undefined ? null : (
+            <Link to={`/users?page=${nextPage}`}>next</Link>
+          )}
         </div>
       </div>
     </div>
