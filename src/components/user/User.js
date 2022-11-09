@@ -2,6 +2,9 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
+// Styles
+import styled from './user.module.css'
+
 // redux
 import { sendMoney } from '../../features/account/accountSlice'
 
@@ -9,9 +12,6 @@ const User = () => {
   const [topup, setTopup] = useState(0)
   const [concept, setConcept] = useState('Payment')
   const dispatch = useDispatch()
-  let query = new URLSearchParams(window.location.search)
-  let testt = query.get('id')
-  console.log(testt)
 
   const conceptArray = ['Payment', 'Bills']
 
@@ -30,16 +30,9 @@ const User = () => {
   }
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        alignItems: 'center',
-      }}
-    >
-      <h2>Charge money</h2>
-      <form onSubmit={send}>
+    <div className={styled.container}>
+      <h1 className={styled.title}>Transfer Money</h1>
+      <form onSubmit={send} className={styled.formContainer}>
         <div>Amount</div>
         <div>
           <input
@@ -60,7 +53,9 @@ const User = () => {
           </select>
         </div>
         <div>
-          <button type='submit'>send</button>
+          <button type='submit' className={styled.btn}>
+            send
+          </button>
         </div>
       </form>
     </div>

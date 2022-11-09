@@ -1,0 +1,26 @@
+.title {
+  background: var(--white);
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+}
+
+.tableContainer {
+  display: block;
+  width: 100%;
+  overflow: auto;
+}
+.tableContainer table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

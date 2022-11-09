@@ -2,8 +2,6 @@
 import DashboardIcon from '../../assets/icons/DashboardIcon'
 import AddMoneyIcon from '../../assets/icons/AddMoneyIcon'
 import Logo from '../../assets/icons/Logo'
-import NewExpenseIcon from '../../assets/icons/NewExpense'
-import NightModeIcon from '../../assets/icons/NightModeIcon'
 import SendMoneyIcon from '../../assets/icons/SendMoney'
 import TransactionsIcon from '../../assets/icons/TransactionsIcon'
 
@@ -44,7 +42,7 @@ const Navbar = () => {
         </div>
         <div
           className={styled.container}
-          style={{ left: `${menu ? 0 : -35}%` }}
+          style={{ left: `${menu ? 0 : -100}%` }}
         >
           <nav className={styled.wrapper}>
             <div className={styled.logo}>
@@ -79,12 +77,6 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li>
-                  <Link to='/newexpense'>
-                    <NewExpenseIcon />
-                    New Expense
-                  </Link>
-                </li>
-                <li>
                   <Link to={'/login'} onClick={onLogout}>
                     <AddMoneyIcon />
                     Logout
@@ -93,12 +85,6 @@ const Navbar = () => {
               </ul>
             ) : (
               <ul>
-                <li>
-                  <Link to='/'>
-                    <DashboardIcon />
-                    Home
-                  </Link>
-                </li>
                 <li>
                   <Link to='/register'>
                     <TransactionsIcon />
@@ -113,15 +99,15 @@ const Navbar = () => {
                 </li>
               </ul>
             )}
-
+          </nav>
+          {user ? (
             <div>
-              <h5>Preferences</h5>
+              <div>Logged user</div>
               <div>
-                <NightModeIcon />
-                <p>Dark mode</p>
+                {user.first_name} {user.last_name}
               </div>
             </div>
-          </nav>
+          ) : null}
         </div>
       </div>
     </header>

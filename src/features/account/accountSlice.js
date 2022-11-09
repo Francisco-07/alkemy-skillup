@@ -115,6 +115,40 @@ export const getMyTransactions = createAsyncThunk(
   }
 )
 
+export const getPaginatedTransactions = createAsyncThunk(
+  'transactions/paginated',
+  async (page, thunkAPI) => {
+    try {
+      return await accountService.getPaginatedTransactions(page)
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
+export const getPaginatedUsers = createAsyncThunk(
+  'users/paginated',
+  async (page, thunkAPI) => {
+    try {
+      return await accountService.getPaginatedUsers(page)
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
 export const getAllUsers = createAsyncThunk('users/get', async (thunkAPI) => {
   try {
     return await accountService.getAllUsers()
@@ -221,6 +255,32 @@ export const accountSlice = createSlice({
         state.isSuccess = true
       })
       .addCase(sendMoney.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
+      .addCase(getPaginatedTransactions.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(getPaginatedTransactions.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.transactions = action.payload
+      })
+      .addCase(getPaginatedTransactions.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
+      .addCase(getPaginatedUsers.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(getPaginatedUsers.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.users = action.payload
+      })
+      .addCase(getPaginatedUsers.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload

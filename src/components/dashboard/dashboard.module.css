@@ -3,3 +3,39 @@
   gap: 0.5rem;
   border: 1px solid black;
 }
+
+.tableContainer {
+  margin-top: var(--medium-gap);
+  overflow-x: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.balance {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.title {
+  background: var(--white);
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+}
+
+.box {
+  width: 150px;
+  height: 150px;
+  padding: 1rem 1.4rem;
+  color: black;
+  background: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.box svg {
+  fill: black;
+  font-size: 2rem;
+}
