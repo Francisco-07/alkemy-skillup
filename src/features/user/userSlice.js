@@ -1,19 +1,19 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import TransactionService from './transactionService'
+import userService from './userService'
 
 const initialState = {
-  transactions: [],
+  users: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
   message: '',
 }
 
-export const getPaginatedTransactions = createAsyncThunk(
-  'transactions/paginated',
+export const getPaginatedUsers = createAsyncThunk(
+  'users/paginated',
   async (page, thunkAPI) => {
     try {
-      return await TransactionService.getPaginatedTransactions(page)
+      return await userService.getPaginatedUsers(page)
     } catch (error) {
       const message =
         (error.response &&
@@ -26,18 +26,18 @@ export const getPaginatedTransactions = createAsyncThunk(
   }
 )
 
-export const transactionSlice = createSlice({
-  name: 'transaction',
+export const userSlice = createSlice({
+  name: 'user',
   initialState,
   reducers: {
-    resetTransactionState: (state) => {
-      state.transactions = []
+    resetUserState: (state) => {
+      state.users = []
       state.isLoading = false
       state.isSuccess = false
       state.isError = false
       state.message = ''
     },
-    resetTransactionStatus: (state) => {
+    resetUserStatus: (state) => {
       state.isLoading = false
       state.isSuccess = false
       state.isError = false
@@ -46,15 +46,15 @@ export const transactionSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getPaginatedTransactions.pending, (state) => {
+      .addCase(getPaginatedUsers.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(getPaginatedTransactions.fulfilled, (state, action) => {
+      .addCase(getPaginatedUsers.fulfilled, (state, action) => {
         state.isLoading = false
         state.isSuccess = true
-        state.transactions = action.payload
+        state.users = action.payload
       })
-      .addCase(getPaginatedTransactions.rejected, (state, action) => {
+      .addCase(getPaginatedUsers.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload
@@ -62,6 +62,5 @@ export const transactionSlice = createSlice({
   },
 })
 
-export const { resetTransactionState, resetTransactionStatus } =
-  transactionSlice.actions
-export default transactionSlice.reducer
+export const { resetUsertState, resetUserStatus } = userSlice.actions
+export default userSlice.reducer

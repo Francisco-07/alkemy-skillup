@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 // redux
 import {
   chargeMoney,
-  resetAccountProcess,
+  resetAccountStatus,
 } from '../../features/account/accountSlice'
 
 // Styles
@@ -15,12 +15,8 @@ import styled from './chargeMoney.module.css'
 const ChargeMoney = () => {
   const [topup, setTopup] = useState(0)
   const dispatch = useDispatch()
-
   const { isError, isSuccess } = useSelector((state) => state.account)
-  //clean up before render test
-  useEffect(() => {
-    dispatch(resetAccountProcess())
-  }, [dispatch])
+
   useEffect(() => {
     if (isError) {
       Swal.fire('Error al depositar')
@@ -28,7 +24,7 @@ const ChargeMoney = () => {
     if (isSuccess) {
       Swal.fire('Depositado con exito')
     }
-    dispatch(resetAccountProcess())
+    dispatch(resetAccountStatus())
   }, [isError, dispatch, isSuccess])
   const onChange = (e) => {
     setTopup(e.target.value)

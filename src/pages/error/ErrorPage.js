@@ -1,4 +1,7 @@
+// Libraries
 import { Link } from 'react-router-dom'
+
+// Styles
 import styled from './errorPage.module.css'
 
 function ErrorPage() {

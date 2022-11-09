@@ -12,20 +12,18 @@ import { BiPaperPlane } from 'react-icons/bi'
 
 // redux
 import {
-  createAccount,
-  getMyTransactions,
-  resetAccountProcess,
-} from '../../features/account/accountSlice'
+  getPaginatedTransactions,
+  resetTransactionStatus,
+} from '../../features/transaction/transactionSlice'
 
 const Dashboard = () => {
   const { transactions, isError, isSuccess } = useSelector(
-    (state) => state.account
+    (state) => state.transaction
   )
 
   const dispatch = useDispatch()
-  const createAcc = () => {
-    dispatch(createAccount())
-  }
+
+  console.log('trans', transactions)
 
   const totalCharged = transactions.data
     ?.filter((item) => {
@@ -46,7 +44,7 @@ const Dashboard = () => {
   const myCash = Number(totalCharged) - Number(totalPayments)
 
   useEffect(() => {
-    dispatch(getMyTransactions())
+    dispatch(getPaginatedTransactions())
   }, [dispatch])
 
   useEffect(() => {
@@ -56,7 +54,7 @@ const Dashboard = () => {
     if (isSuccess) {
       console.log(isSuccess)
     }
-    dispatch(resetAccountProcess())
+    dispatch(resetTransactionStatus())
   }, [dispatch, isError, isSuccess])
   return (
     <>
@@ -107,8 +105,6 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-
-      <button onClick={createAcc}>crear cuenta</button>
     </>
   )
 }

@@ -1,23 +1,38 @@
 // Libraries
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import Swal from 'sweetalert2'
 
 // Styles
 import styled from './user.module.css'
 
 // redux
-import { sendMoney } from '../../features/account/accountSlice'
+import {
+  sendMoney,
+  resetAccountStatus,
+} from '../../features/account/accountSlice'
 
 const User = () => {
   const [topup, setTopup] = useState(0)
   const [concept, setConcept] = useState('Payment')
   const dispatch = useDispatch()
+  const { isError, isSuccess } = useSelector((state) => state.account)
 
   const conceptArray = ['Payment', 'Bills']
 
   const onChange = (e) => {
     setTopup(e.target.value)
   }
+
+  useEffect(() => {
+    if (isError) {
+      Swal.fire('Error al depositar')
+    }
+    if (isSuccess) {
+      Swal.fire('Depositado con exito')
+    }
+    dispatch(resetAccountStatus())
+  }, [isError, dispatch, isSuccess])
 
   const send = (e) => {
     e.preventDefault()

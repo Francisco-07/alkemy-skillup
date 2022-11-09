@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 // Get all accounts
+
 const createAccount = async () => {
   // Token
   const token = JSON.parse(localStorage.getItem('token'))
@@ -23,22 +24,8 @@ const createAccount = async () => {
   return res.data
 }
 
-// Get all accounts
-// const getAllAccounts = async () => {
-//   // Token
-//   const token = JSON.parse(localStorage.getItem('token'))
-
-//   const config = {
-//     headers: {
-//       Authorization: 'Bearer ' + token.accessToken,
-//     },
-//   }
-//   const res = await axios.get('accounts', config)
-//   console.log(res)
-//   return res.data
-// }
-
 // Get my account
+
 const getMyAccount = async () => {
   const token = await JSON.parse(localStorage.getItem('token'))
   const config = {
@@ -63,39 +50,6 @@ const getMyAccount = async () => {
   if (myAccount) {
     const res = await axios.get(`accounts/${myAccount.id}`, config)
 
-    return res.data
-  }
-}
-
-// get my account transactions
-
-const getMyTransactions = async () => {
-  const token = JSON.parse(localStorage.getItem('token'))
-  const config = {
-    headers: {
-      Authorization: 'Bearer ' + token.accessToken,
-    },
-  }
-
-  const res = await axios.get('transactions', config)
-  console.log(res)
-  return res.data
-}
-
-// Paginated transactions
-const getPaginatedTransactions = async (page) => {
-  const token = JSON.parse(localStorage.getItem('token'))
-  const config = {
-    headers: {
-      Authorization: 'Bearer ' + token.accessToken,
-    },
-  }
-  if (!page) {
-    const res = await axios.get(`transactions/`, config)
-    return res.data
-  }
-  if (page) {
-    const res = await axios.get(`transactions/?page=${page}`, config)
     return res.data
   }
 }
@@ -160,50 +114,11 @@ const sendMoney = async (payment) => {
   }
 }
 
-// Get all users
-
-const getAllUsers = async () => {
-  const token = JSON.parse(localStorage.getItem('token'))
-  const config = {
-    headers: {
-      Authorization: 'Bearer ' + token.accessToken,
-    },
-  }
-
-  const res = await axios.get('users', config)
-  console.log(res)
-  return res.data
-}
-
-// Get paginated users
-
-const getPaginatedUsers = async (page) => {
-  const token = JSON.parse(localStorage.getItem('token'))
-  const config = {
-    headers: {
-      Authorization: 'Bearer ' + token.accessToken,
-    },
-  }
-
-  if (!page) {
-    const res = await axios.get(`users`, config)
-    return res.data
-  }
-  if (page) {
-    const res = await axios.get(`users/?page=${page}`, config)
-    return res.data
-  }
-}
-
 const accountService = {
   createAccount,
   getMyAccount,
-  getMyTransactions,
   chargeMoney,
   sendMoney,
-  getAllUsers,
-  getPaginatedTransactions,
-  getPaginatedUsers,
 }
 
 export default accountService

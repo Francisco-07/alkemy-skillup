@@ -9,11 +9,11 @@ import { Link, useSearchParams } from 'react-router-dom'
 // Redux
 import {
   getPaginatedUsers,
-  resetAccountProcess,
-} from '../../features/account/accountSlice'
+  resetUserStatus,
+} from '../../features/user/userSlice'
 
 const UsersList = () => {
-  const { users, isError, isSuccess } = useSelector((state) => state.account)
+  const { users, isError, isSuccess } = useSelector((state) => state.user)
 
   const [nextPage, setNextPage] = useState(0)
   const [prevPage, setPrevPage] = useState(0)
@@ -46,7 +46,7 @@ const UsersList = () => {
     if (isSuccess) {
       console.log(isSuccess)
     }
-    dispatch(resetAccountProcess())
+    dispatch(resetUserStatus())
   }, [dispatch, isError, isSuccess])
   return (
     <div>

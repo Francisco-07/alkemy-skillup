@@ -16,7 +16,7 @@ const Transactions = () => {
   const [nextPage, setNextPage] = useState(0)
   const [prevPage, setPrevPage] = useState(0)
   const { transactions, isError, isSuccess } = useSelector(
-    (state) => state.account
+    (state) => state.transaction
   )
   const [searchParams] = useSearchParams()
   let query = new URLSearchParams(window.location.search)
