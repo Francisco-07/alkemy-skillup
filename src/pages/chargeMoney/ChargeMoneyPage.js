@@ -1,3 +1,4 @@
+// Components
 import ChargeMoney from '../../components/chargeMoney/ChargeMoney'
 
 const ChargeMoneyPage = () => {

@@ -1,6 +1,7 @@
 // Components
 import Navbar from './components/navbar/Navbar'
 import Footer from './components/footer/Footer'
+import Transaction from './components/transaction/Transaction'
 
 // Pages
 import HomePage from './pages/home/HomePage'
@@ -13,7 +14,12 @@ import TransactionsPage from './pages/transactions/TransactionsPage'
 import ErrorPage from './pages/error/ErrorPage'
 
 // Libraries
-import { Routes, Route } from 'react-router-dom'
+import { Navigate, Outlet, Routes, Route } from 'react-router-dom'
+
+const PrivateRoutes = () => {
+  const token = JSON.parse(localStorage.getItem('token'))
+  return token?.accessToken ? <Outlet /> : <Navigate to='/login' />
+}
 
 function App() {
   return (
@@ -21,13 +27,16 @@ function App() {
       <Navbar />
       <main>
         <Routes>
-          <Route exact path='/' element={<HomePage />} />
+          <Route element={<PrivateRoutes />}>
+            <Route exact path='/' element={<HomePage />} />
+            <Route path='/users' element={<UsersListPage />} />
+            <Route path='/user' element={<UserPage />} />
+            <Route path='/charge' element={<ChargeMoneyPage />} />
+            <Route path='/transactions' element={<TransactionsPage />} />
+            <Route path='/transaction' element={<Transaction />} />
+          </Route>
           <Route path='/login' element={<LoginPage />} />
           <Route path='/register' element={<RegisterPage />} />
-          <Route path='/users' element={<UsersListPage />} />
-          <Route path='/user' element={<UserPage />} />
-          <Route path='/charge' element={<ChargeMoneyPage />} />
-          <Route path='/transactions' element={<TransactionsPage />} />
           <Route path='*' element={<ErrorPage />} />
         </Routes>
       </main>

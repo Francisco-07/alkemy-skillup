@@ -63,6 +63,7 @@ const Transactions = () => {
                   <th>Date</th>
                   <th>Status</th>
                   <th>Amount</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -72,6 +73,7 @@ const Transactions = () => {
                     <td>{t.date.split('T')[0]}</td>
                     <td>done</td>
                     <td>${t.amount}</td>
+                    <Link to={`/transaction?id=${t.id}`}>Detalles</Link>
                   </tr>
                 ))}
               </tbody>

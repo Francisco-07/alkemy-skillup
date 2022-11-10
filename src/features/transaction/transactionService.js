@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+// Paginated Transaction
 const getPaginatedTransactions = async (page) => {
   const token = JSON.parse(localStorage.getItem('token'))
   const config = {
@@ -17,8 +18,22 @@ const getPaginatedTransactions = async (page) => {
   }
 }
 
+// Single transaction
+const singleTransaction = async (id) => {
+  const token = JSON.parse(localStorage.getItem('token'))
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + token.accessToken,
+    },
+  }
+
+  const res = await axios.get(`transactions/${id}`, config)
+  return res.data
+}
+
 const accountService = {
   getPaginatedTransactions,
+  singleTransaction,
 }
 
 export default accountService

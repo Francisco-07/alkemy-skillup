@@ -3,6 +3,7 @@ import TransactionService from './transactionService'
 
 const initialState = {
   transactions: [],
+  transaction: {},
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -14,6 +15,23 @@ export const getPaginatedTransactions = createAsyncThunk(
   async (page, thunkAPI) => {
     try {
       return await TransactionService.getPaginatedTransactions(page)
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+
+export const singleTransaction = createAsyncThunk(
+  'single/transaction',
+  async (id, thunkAPI) => {
+    try {
+      return await TransactionService.singleTransaction(id)
     } catch (error) {
       const message =
         (error.response &&
@@ -55,6 +73,19 @@ export const transactionSlice = createSlice({
         state.transactions = action.payload
       })
       .addCase(getPaginatedTransactions.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
+      .addCase(singleTransaction.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(singleTransaction.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.transaction = action.payload
+      })
+      .addCase(singleTransaction.rejected, (state, action) => {
         state.isLoading = false
         state.isError = true
         state.message = action.payload

@@ -17,7 +17,7 @@ function ErrorPage() {
             <span className={`${styled.bold} ${styled.mr}`}>Error 404.</span>
             <span>Not found</span>
 
-            <Link className={`${styled.bold} ${styled.link}`} to={'/dashboard'}>
+            <Link className={`${styled.bold} ${styled.link}`} to={'/'}>
               <p className={styled.linkText}>Go back to homepage</p>
             </Link>
           </div>
