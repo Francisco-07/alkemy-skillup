@@ -2,7 +2,6 @@ import axios from 'axios'
 
 // Edit transaction concept
 const editConcept = async ({ id, data }) => {
-  console.log('id', data)
   const token = JSON.parse(localStorage.getItem('token'))
   const config = {
     headers: {

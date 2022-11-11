@@ -28,8 +28,6 @@ const Dashboard = () => {
 
   const dispatch = useDispatch()
 
-  console.log('trans', transactions)
-
   const totalCharged = transactions.data
     ?.filter((item) => {
       return item.concept === 'Deposit'
@@ -54,10 +52,9 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (isError) {
-      console.log(isError)
+      dispatch(resetTransactionStatus())
     }
     if (isSuccess) {
-      console.log(isSuccess)
       dispatch(resetTransactionStatus())
     }
   }, [dispatch, isError, isSuccess])

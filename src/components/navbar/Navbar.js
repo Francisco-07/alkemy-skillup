@@ -1,9 +1,12 @@
 // Icons
-import DashboardIcon from '../../assets/icons/DashboardIcon'
-import AddMoneyIcon from '../../assets/icons/AddMoneyIcon'
 import Logo from '../../assets/icons/Logo'
-import SendMoneyIcon from '../../assets/icons/SendMoney'
-import TransactionsIcon from '../../assets/icons/TransactionsIcon'
+import { MdNotes } from 'react-icons/md'
+import { RiDashboardFill } from 'react-icons/ri'
+import { GoDiffAdded } from 'react-icons/go'
+import { IoIosSend } from 'react-icons/io'
+import { ImExit, ImEnter } from 'react-icons/im'
+import { FiUserPlus } from 'react-icons/fi'
+import { GiHamburgerMenu, GiTireIronCross } from 'react-icons/gi'
 
 // Libraries
 import { Link, useNavigate } from 'react-router-dom'
@@ -45,7 +48,7 @@ const Navbar = () => {
     <header>
       <div>
         <div className={styled.btn} onClick={openOrClose}>
-          x
+          {menu ? <GiTireIronCross /> : <GiHamburgerMenu />}
         </div>
         <div
           className={styled.container}
@@ -62,31 +65,31 @@ const Navbar = () => {
                 <ul>
                   <li>
                     <Link to='/'>
-                      <DashboardIcon />
+                      <RiDashboardFill />
                       Dashboard
                     </Link>
                   </li>
                   <li>
                     <Link to='/transactions'>
-                      <TransactionsIcon />
+                      <MdNotes />
                       Transactions
                     </Link>
                   </li>
                   <li>
                     <Link to='/charge'>
-                      <AddMoneyIcon />
+                      <GoDiffAdded />
                       Add money
                     </Link>
                   </li>
                   <li>
                     <Link to='/users'>
-                      <SendMoneyIcon />
+                      <IoIosSend />
                       Send money
                     </Link>
                   </li>
                   <li>
                     <Link to={'/login'} onClick={onLogout}>
-                      <AddMoneyIcon />
+                      <ImExit />
                       Logout
                     </Link>
                   </li>
@@ -95,13 +98,13 @@ const Navbar = () => {
                 <ul>
                   <li>
                     <Link to='/register'>
-                      <TransactionsIcon />
+                      <FiUserPlus />
                       Register
                     </Link>
                   </li>
                   <li>
                     <Link to='/login'>
-                      <AddMoneyIcon />
+                      <ImEnter />
                       Login
                     </Link>
                   </li>
@@ -110,10 +113,10 @@ const Navbar = () => {
             </div>
             {user ? (
               <div>
-                <div>Logged user</div>
-                <div>
+                <div>Logged as</div>
+                <h4>
                   {user.first_name} {user.last_name}
-                </div>
+                </h4>
               </div>
             ) : null}
           </nav>

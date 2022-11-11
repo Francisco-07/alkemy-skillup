@@ -45,10 +45,9 @@ const Transactions = () => {
 
   useEffect(() => {
     if (isError) {
-      console.log(isError)
+      dispatch(resetTransactionStatus())
     }
     if (isSuccess) {
-      console.log(isSuccess)
       dispatch(resetTransactionStatus())
     }
   }, [dispatch, isError, isSuccess])

@@ -12,17 +12,17 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  margin-top: 2rem;
+  margin-top: 4rem;
   gap: 3rem;
 }
 
 .btn {
   position: fixed;
-  top: 0;
-  left: 0;
-  font-size: 40px;
+  top: 15px;
+  left: 15px;
+  font-size: 2rem;
   font-weight: bolder;
-  color: var(--black);
+  color: var(--light-blue);
   z-index: 200;
 }
 
@@ -42,6 +42,6 @@
   align-items: center;
   gap: 0.8rem;
 }
-.container svg {
+.container ul svg {
   fill: var(--white);
 }

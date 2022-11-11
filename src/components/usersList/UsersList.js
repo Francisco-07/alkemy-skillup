@@ -45,10 +45,9 @@ const UsersList = () => {
 
   useEffect(() => {
     if (isError) {
-      console.log(isError)
+      dispatch(resetUserStatus())
     }
     if (isSuccess) {
-      console.log(isSuccess)
       dispatch(resetUserStatus())
     }
   }, [dispatch, isError, isSuccess])
