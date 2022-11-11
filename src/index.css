@@ -60,10 +60,17 @@ li {
   font-family: 'DM Sans', sans-serif;
 }
 
+table {
+  padding: 2rem;
+}
+
+td {
+  border-bottom: 1px solid rgb(199, 199, 199);
+}
+
 table,
 th,
 td {
-  border: 1px solid;
   background-color: var(--white);
 }
 td,

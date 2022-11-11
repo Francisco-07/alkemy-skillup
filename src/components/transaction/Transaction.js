@@ -8,10 +8,11 @@ import Title from '../title/Title'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
 
 // Redux
 import { singleTransaction } from '../../features/transaction/transactionSlice'
-import { getSingleUser } from '../../features/user/userSlice'
+
 import {
   editConcept,
   resetEditConceptStatus,
@@ -21,33 +22,49 @@ import Btn from '../Btn/Btn'
 const Transaction = () => {
   const { transaction } = useSelector((state) => state.transaction)
   const { isSuccess, isError } = useSelector((state) => state.editConcept)
-  const { user } = useSelector((state) => state.user)
+
+  const navigate = useNavigate()
+
   const [concept, setConcept] = useState('Edit')
 
-  const conceptArray = ['Payment', 'Bills']
+  const conceptArray = ['Payment', 'Bills', 'Expenses', 'Other']
   let query = new URLSearchParams(window.location.search)
   let id = Number(query.get('id'))
-  console.log(isError)
 
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(singleTransaction(id))
-    dispatch(getSingleUser(transaction.to_account_id))
-  }, [dispatch, id, transaction.concept, transaction.to_account_id])
+  }, [dispatch, id])
+
+  const onClick = () => {
+    navigate('/transactions')
+  }
 
   useEffect(() => {
-    if (isSuccess) {
-      Swal.fire('good')
-      dispatch(resetEditConceptStatus())
+    if (isError) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong!',
+      })
     }
-  }, [isSuccess, dispatch])
+    if (isSuccess) {
+      Swal.fire({
+        icon: 'success',
+        title: 'User registered successful',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      dispatch(resetEditConceptStatus())
+      navigate('/transactions')
+    }
+  }, [isSuccess, isError, dispatch, navigate])
 
   useEffect(() => {
     setConcept(transaction?.concept)
   }, [transaction?.concept])
 
-  const tditConcept = (e) => {
+  const submitConcept = (e) => {
     e.preventDefault()
 
     const data = {
@@ -68,13 +85,11 @@ const Transaction = () => {
     <div className={styled.container}>
       <Title Size={'h1'} text={'Transaction details'} />
       <div className={styled.wrapper}>
-        <form onSubmit={tditConcept}>
+        <form onSubmit={submitConcept}>
           <h2>Transaction ID: {transaction.id}</h2>
           <h2>Amount: ${transaction.amount}</h2>
-          <h2>
-            To user: {user.first_name} {user.last_name}
-          </h2>
-          <h2>Email: {user.email}</h2>
+          <h2>From account ID: {transaction.accountId}</h2>
+          <h2>Transfered to account ID: {transaction.to_account_id}</h2>
           <div>
             <h2>
               Concept:
@@ -94,8 +109,16 @@ const Transaction = () => {
               )}
             </h2>
           </div>
-          <h2>Transfered to account ID: {transaction.to_account_id}</h2>
-          <Btn type={'submit'} text={'save'} variant={'secondary'} />
+          {transaction?.concept === 'Deposit' ? (
+            <Btn
+              type={'submit'}
+              text={'Go back'}
+              variant={'secondary'}
+              action={onClick}
+            />
+          ) : (
+            <Btn type={'submit'} text={'Save'} variant={'secondary'} />
+          )}
         </form>
       </div>
     </div>

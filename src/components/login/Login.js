@@ -32,12 +32,20 @@ function Login() {
 
   useEffect(() => {
     if (isError) {
-      Swal.fire(`test ${message}`)
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid credentials!',
+      })
       dispatch(reset())
       return
     }
     if (isSuccess) {
-      Swal.fire('Login successful')
+      Swal.fire({
+        icon: 'success',
+        title: 'Login successful',
+        showConfirmButton: false,
+        timer: 1500,
+      })
       dispatch(logedUser())
       dispatch(createAccount())
       navigate('/')
@@ -60,11 +68,17 @@ function Login() {
   const onSubmit = (e) => {
     e.preventDefault()
     if (email === '' || password === '') {
-      Swal.fire('Invalid credentials')
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid credentials!',
+      })
       return
     }
     if (email !== '' && !regex.test(email)) {
-      Swal.fire('Invalid mail or password')
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid credentials!',
+      })
       return
     } else {
       dispatch(

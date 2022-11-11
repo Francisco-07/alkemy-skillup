@@ -7,13 +7,17 @@
 .formContainer {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+  height: 200px;
   gap: 0.6rem;
-  padding: 2rem;
+  padding: 4rem 6rem;
   background-color: var(--white);
+  box-shadow: var(--main-shadow);
 }
 
 .formContainer h4 {
   margin: 0;
+  font-size: 2rem;
 }
 
 .btn {

@@ -9,6 +9,7 @@ import TransactionsIcon from '../../assets/icons/TransactionsIcon'
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import Swal from 'sweetalert2'
 
 // Redux
 import { logout, reset } from '../../features/auth/authSlice'
@@ -31,6 +32,12 @@ const Navbar = () => {
     dispatch(logout())
     dispatch(reset())
     dispatch(resetAccountState())
+    Swal.fire({
+      icon: 'success',
+      title: 'User Loged out',
+      showConfirmButton: false,
+      timer: 1500,
+    })
     navigate('/')
   }
 

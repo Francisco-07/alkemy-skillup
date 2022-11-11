@@ -22,7 +22,7 @@ const User = () => {
   const dispatch = useDispatch()
   const { isError, isSuccess } = useSelector((state) => state.account)
 
-  const conceptArray = ['Payment', 'Bills']
+  const conceptArray = ['Payment', 'Bills', 'Expenses', 'Other']
 
   const onChange = (e) => {
     setTopup(e.target.value)
@@ -30,16 +30,29 @@ const User = () => {
 
   useEffect(() => {
     if (isError) {
-      Swal.fire('Error al depositar')
+      Swal.fire({
+        icon: 'error',
+        title: 'Deposit rejected',
+      })
     }
     if (isSuccess) {
-      Swal.fire('Depositado con exito')
+      Swal.fire({
+        icon: 'success',
+        title: 'Deposit successful',
+      })
     }
     dispatch(resetAccountStatus())
   }, [isError, dispatch, isSuccess])
 
   const send = (e) => {
     e.preventDefault()
+    if (topup === 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Put an amount of money',
+      })
+      return
+    }
     const payment = {
       type: 'payment',
       concept: concept,
@@ -52,7 +65,7 @@ const User = () => {
     <div className={styled.container}>
       <Title Size={'h1'} text={'Transfer money'} />
       <form onSubmit={send} className={styled.formContainer}>
-        <div>Amount</div>
+        <h4 className={styled.formTitle}>Amount in ARS$</h4>
         <div>
           <input
             type='number'

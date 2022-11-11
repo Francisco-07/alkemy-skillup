@@ -21,6 +21,7 @@
 
 .title {
   width: 100%;
+  text-align: center;
 }
 
 .box {
@@ -38,8 +39,4 @@
 .box svg {
   fill: black;
   font-size: 2rem;
-}
-
-.title {
-  text-align: center;
 }

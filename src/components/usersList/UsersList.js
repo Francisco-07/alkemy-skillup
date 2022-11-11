@@ -3,6 +3,7 @@ import styled from './usersList.module.css'
 
 // Components
 import Title from '../title/Title'
+import SkeletonUsers from '../skeleton/SkeletonUsers'
 
 // Libraries
 import { useEffect, useState } from 'react'
@@ -48,27 +49,32 @@ const UsersList = () => {
     }
     if (isSuccess) {
       console.log(isSuccess)
+      dispatch(resetUserStatus())
     }
-    dispatch(resetUserStatus())
   }, [dispatch, isError, isSuccess])
   return (
     <div>
       <Title Size={'h1'} text={'Users list'} />
-      <div className={styled.container}>
-        <div className={styled.wrapper}>
-          {users.data?.map((user, i) => {
-            return (
-              <div key={i} className={styled.usersContainer}>
-                <div>
-                  {user.first_name} {user.last_name}
-                </div>
 
-                <div>{user.email}</div>
-                <Link to={`/user?id=${user.id}`}>Ver cuenta</Link>
-              </div>
-            )
-          })}
-        </div>
+      <div className={styled.container}>
+        {!users.data ? (
+          <SkeletonUsers />
+        ) : (
+          <div className={styled.wrapper}>
+            {users.data?.map((user, i) => {
+              return (
+                <div key={i} className={styled.usersContainer}>
+                  <div>
+                    {user.first_name} {user.last_name}
+                  </div>
+
+                  <div>{user.email}</div>
+                  <Link to={`/user?id=${user.id}`}>Ver cuenta</Link>
+                </div>
+              )
+            })}
+          </div>
+        )}
       </div>
       <div className={styled.pagination}>
         <div>pagination</div>

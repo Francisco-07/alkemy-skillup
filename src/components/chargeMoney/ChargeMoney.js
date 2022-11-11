@@ -23,10 +23,16 @@ const ChargeMoney = () => {
 
   useEffect(() => {
     if (isError) {
-      Swal.fire('Error al depositar')
+      Swal.fire({
+        icon: 'error',
+        title: 'Deposit rejected',
+      })
     }
     if (isSuccess) {
-      Swal.fire('Depositado con exito')
+      Swal.fire({
+        icon: 'success',
+        title: 'Deposit successful',
+      })
     }
     dispatch(resetAccountStatus())
   }, [isError, dispatch, isSuccess])
@@ -36,6 +42,13 @@ const ChargeMoney = () => {
 
   const charge = (e) => {
     e.preventDefault()
+    if (topup === 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Put an amount of money',
+      })
+      return
+    }
     const deposit = {
       type: 'topup',
       concept: 'Deposit',
@@ -49,7 +62,7 @@ const ChargeMoney = () => {
       <Title Size={'h1'} text={'Deposit'} />
       <div className={styled.container}>
         <form onSubmit={charge} className={styled.formContainer}>
-          <h4>Amount</h4>
+          <h4>Amount in ARS$</h4>
           <div>
             <input
               type='number'

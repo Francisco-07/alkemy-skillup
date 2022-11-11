@@ -1,0 +1,18 @@
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.usersContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 250px;
+  height: 150px;
+  gap: 0.3rem;
+  padding: 0.6rem;
+  color: #d9dadb;
+  background-color: #d9dadb;
+}

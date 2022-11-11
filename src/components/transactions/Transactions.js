@@ -5,6 +5,7 @@ import { Link, useSearchParams } from 'react-router-dom'
 
 // Components
 import Title from '../title/Title'
+import SkeletonTransactions from '../skeleton/SkeletonTransactions'
 
 // Styles
 import styled from './transactions.module.css'
@@ -48,8 +49,8 @@ const Transactions = () => {
     }
     if (isSuccess) {
       console.log(isSuccess)
+      dispatch(resetTransactionStatus())
     }
-    dispatch(resetTransactionStatus())
   }, [dispatch, isError, isSuccess])
   return (
     <>
@@ -57,30 +58,34 @@ const Transactions = () => {
       <div>
         <div>
           <div className={styled.tableContainer}>
-            <table>
-              <thead>
-                <tr>
-                  <th>Concept</th>
-                  <th>Date</th>
-                  <th>Status</th>
-                  <th>Amount</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                {transactions.data?.map((t, i) => (
-                  <tr key={i}>
-                    <td>{t.concept}</td>
-                    <td>{t.date.split('T')[0]}</td>
-                    <td>done</td>
-                    <td>${t.amount}</td>
-                    <td>
-                      <Link to={`/transaction?id=${t.id}`}>Detalles</Link>
-                    </td>
+            {!transactions.data ? (
+              <SkeletonTransactions />
+            ) : (
+              <table>
+                <thead>
+                  <tr>
+                    <th>Concept</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Amount</th>
+                    <th></th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {transactions.data?.map((t, i) => (
+                    <tr key={i}>
+                      <td>{t.concept}</td>
+                      <td>{t.date.split('T')[0]}</td>
+                      <td>done</td>
+                      <td>${t.amount}</td>
+                      <td>
+                        <Link to={`/transaction?id=${t.id}`}>Detalles</Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
         </div>
       </div>

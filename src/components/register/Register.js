@@ -35,10 +35,18 @@ const Register = () => {
 
   useEffect(() => {
     if (isError) {
-      console.log(message)
+      Swal.fire({
+        icon: 'error',
+        title: 'Something went wrong!',
+      })
     }
     if (isSuccess) {
-      Swal.fire('User registered successful')
+      Swal.fire({
+        icon: 'success',
+        title: 'User registered successful',
+        showConfirmButton: false,
+        timer: 1500,
+      })
       navigate('/login')
     }
     if (token?.accessToken) {
@@ -71,11 +79,17 @@ const Register = () => {
       first_name === '' ||
       last_name === ''
     ) {
-      Swal.fire('Complete all fields')
+      Swal.fire({
+        icon: 'error',
+        title: 'Complete all fields',
+      })
       return
     }
     if (email !== '' && !regex.test(email)) {
-      Swal.fire('Invalid mail')
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid email',
+      })
       return
     }
     dispatch(register(userData))
