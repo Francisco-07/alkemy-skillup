@@ -1,9 +1,12 @@
 // Components
 import ChargeMoney from '../../components/chargeMoney/ChargeMoney'
 
+// Styles
+import styled from './chargeMoney.module.css'
+
 const ChargeMoneyPage = () => {
   return (
-    <section>
+    <section className={styled.container}>
       <ChargeMoney />
     </section>
   )

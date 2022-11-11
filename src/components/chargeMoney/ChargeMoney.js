@@ -3,6 +3,10 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
 
+// Components
+import Title from '../title/Title'
+import Btn from '../Btn/Btn'
+
 // redux
 import {
   chargeMoney,
@@ -42,9 +46,7 @@ const ChargeMoney = () => {
 
   return (
     <div>
-      <div className={styled.title}>
-        <h1>Deposit</h1>
-      </div>
+      <Title Size={'h1'} text={'Deposit'} />
       <div className={styled.container}>
         <form onSubmit={charge} className={styled.formContainer}>
           <h4>Amount</h4>
@@ -58,9 +60,7 @@ const ChargeMoney = () => {
             />
           </div>
           <div>
-            <button type='submit' className={styled.btn}>
-              Deposit
-            </button>
+            <Btn type={'submit'} variant={'primary'} text='Deposit' />
           </div>
         </form>
       </div>

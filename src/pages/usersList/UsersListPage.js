@@ -1,9 +1,12 @@
 // Components
 import UsersList from '../../components/usersList/UsersList'
 
+// Styles
+import styled from './userListPage.module.css'
+
 const UsersListPage = () => {
   return (
-    <section>
+    <section className={styled.container}>
       <UsersList />
     </section>
   )

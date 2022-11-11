@@ -7,22 +7,17 @@ import styled from './errorPage.module.css'
 function ErrorPage() {
   return (
     <>
-      <section className={styled.errorPage}>
-        <div className={styled.container}>
-          <div className={styled.textContainer}>
-            <h1>Ooops!</h1>
-            <p className={styled.message}>
-              We can't seem to find the page you're looking for.
-            </p>
-            <span className={`${styled.bold} ${styled.mr}`}>Error 404.</span>
-            <span>Not found</span>
-
-            <Link className={`${styled.bold} ${styled.link}`} to={'/'}>
-              <p className={styled.linkText}>Go back to homepage</p>
-            </Link>
-          </div>
+      <div className={styled.container}>
+        <div className={styled.wrapper}>
+          <h1>Ooops!</h1>
+          <p>We can't seem to find the page you're looking for.</p>
+          <h2>Error 404.</h2>
+          <span>Not found</span>
+          <Link to={'/'} className={styled.link}>
+            Go back to homepage
+          </Link>
         </div>
-      </section>
+      </div>
     </>
   )
 }

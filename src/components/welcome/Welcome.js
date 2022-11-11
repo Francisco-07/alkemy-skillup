@@ -8,13 +8,13 @@ const Welcome = () => {
   return (
     <div className={styled.container}>
       <div>
-        <div className={styled.logo}>
-          <LogoLoginIcon />
-        </div>
-        <h1 className={styled.title}>Welcome to</h1>
-        <h1 className={styled.titleBrand}>AlkyBank</h1>
+        <LogoLoginIcon />
       </div>
-      <div className={styled.span}>
+      <h1>
+        <div>Welcome to</div>
+        <div>AlkyBank</div>
+      </h1>
+      <div>
         <span>Fast. Secure. Trustworthy.</span>
       </div>
     </div>

@@ -3,6 +3,10 @@ import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Swal from 'sweetalert2'
 
+// Components
+import Title from '../title/Title'
+import Btn from '../Btn/Btn'
+
 // Styles
 import styled from './user.module.css'
 
@@ -46,7 +50,7 @@ const User = () => {
 
   return (
     <div className={styled.container}>
-      <h1 className={styled.title}>Transfer Money</h1>
+      <Title Size={'h1'} text={'Transfer money'} />
       <form onSubmit={send} className={styled.formContainer}>
         <div>Amount</div>
         <div>
@@ -68,9 +72,7 @@ const User = () => {
           </select>
         </div>
         <div>
-          <button type='submit' className={styled.btn}>
-            send
-          </button>
+          <Btn text='Send' variant={'secondary'} type={'submit'} />
         </div>
       </form>
     </div>

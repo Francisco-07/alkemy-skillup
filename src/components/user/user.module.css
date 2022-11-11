@@ -4,13 +4,7 @@
   align-items: center;
   height: 100vh;
 }
-.title {
-  background: var(--white);
-  width: 100%;
-  text-align: center;
-  padding: 1rem 0;
-  margin-bottom: 2rem;
-}
+
 .formContainer {
   display: flex;
   flex-direction: column;

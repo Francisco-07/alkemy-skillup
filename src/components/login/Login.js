@@ -8,10 +8,11 @@ import Swal from 'sweetalert2'
 import styled from './login.module.css'
 
 // Components
-import Button from '../Button/index'
+import Btn from '../Btn/Btn'
 
 // Redux
 import { login, reset, logedUser } from '../../features/auth/authSlice'
+import { createAccount } from '../../features/account/accountSlice'
 
 function Login() {
   const token = JSON.parse(localStorage.getItem('token'))
@@ -38,6 +39,7 @@ function Login() {
     if (isSuccess) {
       Swal.fire('Login successful')
       dispatch(logedUser())
+      dispatch(createAccount())
       navigate('/')
     }
 
@@ -76,43 +78,40 @@ function Login() {
 
   return (
     <>
-      <h2 className={styled.loginTitle}>Login</h2>
+      <h2>Login</h2>
       <section>
-        <form onSubmit={onSubmit}>
-          <div className={styled.formInputs}>
+        <form onSubmit={onSubmit} className={styled.container}>
+          <div>
             <div>
-              <div className={styled.labels}>
-                <label>Email</label>
-              </div>
-              <input
-                type='text'
-                id='email'
-                name='email'
-                value={email}
-                onChange={onChange}
-              />
+              <label>Email</label>
             </div>
+            <input
+              type='text'
+              id='email'
+              name='email'
+              value={email}
+              onChange={onChange}
+            />
+          </div>
+          <div>
             <div>
-              <div className={styled.labels}>
-                <label>Password</label>
-              </div>
-              <input
-                type='password'
-                id='password'
-                name='password'
-                value={password}
-                onChange={onChange}
-              />
+              <label>Password</label>
             </div>
+            <input
+              type='password'
+              id='password'
+              name='password'
+              value={password}
+              onChange={onChange}
+            />
           </div>
 
-          <div className={styled.loginBtn}>
-            <Button text={'LOGIN'} options={{ uppercase: true }} />
-          </div>
-          <div className={styled.loginFooter}>
+          <Btn text='Login' variant={'primary'} type={'submit'} />
+
+          <div>
             <span>
               New user?{' '}
-              <Link className={styled.signupLink} to={'/register'}>
+              <Link to={'/register'}>
                 <b>Sign up</b>
               </Link>
             </span>

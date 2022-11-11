@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useSearchParams } from 'react-router-dom'
 
+// Components
+import Title from '../title/Title'
+
 // Styles
 import styled from './transactions.module.css'
 
@@ -50,9 +53,7 @@ const Transactions = () => {
   }, [dispatch, isError, isSuccess])
   return (
     <>
-      <div className={styled.title}>
-        <h1>Transactions</h1>
-      </div>
+      <Title Size={'h1'} text={'Transactions'} />
       <div>
         <div>
           <div className={styled.tableContainer}>
@@ -73,7 +74,9 @@ const Transactions = () => {
                     <td>{t.date.split('T')[0]}</td>
                     <td>done</td>
                     <td>${t.amount}</td>
-                    <Link to={`/transaction?id=${t.id}`}>Detalles</Link>
+                    <td>
+                      <Link to={`/transaction?id=${t.id}`}>Detalles</Link>
+                    </td>
                   </tr>
                 ))}
               </tbody>

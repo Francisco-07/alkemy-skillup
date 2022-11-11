@@ -1,23 +1,5 @@
-.formInputs {
-  height: 100%;
+.container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
-}
-
-.labels {
-  margin-bottom: 3px;
-}
-
-input {
-  background-color: #f2f2f2;
-  border: none;
-  height: 1.5rem;
-  width: 12rem;
-}
-
-h2 {
-  text-align: center;
-  font-weight: 500;
+  gap: 0.7rem;
 }

@@ -20,8 +20,22 @@ const getPaginatedUsers = async (page) => {
   }
 }
 
+// Get single user
+
+const getSingleUser = async (id) => {
+  const token = JSON.parse(localStorage.getItem('token'))
+  const config = {
+    headers: {
+      Authorization: 'Bearer ' + token.accessToken,
+    },
+  }
+  const res = await axios.get(`users/${id}`, config)
+  return res.data
+}
+
 const userService = {
   getPaginatedUsers,
+  getSingleUser,
 }
 
 export default userService

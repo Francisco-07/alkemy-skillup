@@ -118,19 +118,6 @@ export const accountSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(createAccount.pending, (state) => {
-        state.isLoading = true
-      })
-      .addCase(createAccount.fulfilled, (state, action) => {
-        state.isLoading = false
-        state.isSuccess = true
-        state.message = action.payload
-      })
-      .addCase(createAccount.rejected, (state, action) => {
-        state.isLoading = false
-        state.isError = true
-        state.message = action.payload
-      })
       .addCase(getMyAccount.pending, (state) => {
         state.isLoading = true
       })

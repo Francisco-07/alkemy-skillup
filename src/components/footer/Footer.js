@@ -7,6 +7,9 @@ import {
   FaYoutube,
 } from 'react-icons/fa'
 
+// Components
+import Btn from '../Btn/Btn'
+
 // Styles
 import styled from './footer.module.css'
 
@@ -35,13 +38,13 @@ const Footer = () => {
             <div className={styled.footerForm}>
               <form>
                 <input placeholder='Email' type='email' />
-                <button>Subscribe</button>
+                <Btn text='subscribe' variant={'primary'} />
               </form>
             </div>
           </div>
         </section>
       </footer>
-      <div className={styled.copyright}>Development Team R7</div>
+      <div className={styled.copyright}>Development Francisco Garciarena</div>
     </footer>
   )
 }

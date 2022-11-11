@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 // Components
-import Button from '../../components/Button/index'
+import Btn from '../Btn/Btn'
 
 // Styles
 import styled from './register.module.css'
@@ -83,62 +83,58 @@ const Register = () => {
 
   return (
     <>
-      <section>
-        <h2>Sign up</h2>
-      </section>
-      <form onSubmit={onSubmit}>
-        <div className={styled.formInputs}>
+      <h2>Sign up</h2>
+      <form onSubmit={onSubmit} className={styled.container}>
+        <div>
           <div>
-            <div className={styled.labels}>
-              <label>First name</label>
-            </div>
-            <input
-              type='text'
-              id='first_name'
-              name='first_name'
-              value={first_name}
-              onChange={onChange}
-            />
+            <label>First name</label>
           </div>
+          <input
+            type='text'
+            id='first_name'
+            name='first_name'
+            value={first_name}
+            onChange={onChange}
+          />
+        </div>
+        <div>
           <div>
-            <div className={styled.labels}>
-              <label>Last name</label>
-            </div>
-            <input
-              type='text'
-              id='last_name'
-              name='last_name'
-              value={last_name}
-              onChange={onChange}
-            />
+            <label>Last name</label>
           </div>
+          <input
+            type='text'
+            id='last_name'
+            name='last_name'
+            value={last_name}
+            onChange={onChange}
+          />
+        </div>
+        <div>
           <div>
-            <div className={styled.labels}>
-              <label>Email</label>
-            </div>
-            <input
-              type='string'
-              id='email'
-              name='email'
-              value={email}
-              onChange={onChange}
-            />
+            <label>Email</label>
           </div>
+          <input
+            type='string'
+            id='email'
+            name='email'
+            value={email}
+            onChange={onChange}
+          />
+        </div>
+        <div>
           <div>
-            <div className={styled.labels}>
-              <label>Password</label>
-            </div>
-            <input
-              type='password'
-              id='password'
-              name='password'
-              value={password}
-              onChange={onChange}
-            />
+            <label>Password</label>
           </div>
-          <div>
-            <Button text={'Sign up'} options={{ uppercase: true }} />
-          </div>
+          <input
+            type='password'
+            id='password'
+            name='password'
+            value={password}
+            onChange={onChange}
+          />
+        </div>
+        <div>
+          <Btn text='Sign up' variant={'primary'} type={'submit'} />
         </div>
       </form>
     </>

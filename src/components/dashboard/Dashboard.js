@@ -2,6 +2,9 @@
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
+// Components
+import Title from '../../components/title/Title'
+
 // Styles
 import styled from './dashboard.module.css'
 
@@ -58,9 +61,8 @@ const Dashboard = () => {
   }, [dispatch, isError, isSuccess])
   return (
     <>
-      <div className={styled.title}>
-        <h1>Dashboard</h1>
-      </div>
+      <Title Size={'h1'} text={'Dashboard'} />
+
       <div>
         <div className={styled.balance}>
           <div className={styled.box}>
@@ -80,7 +82,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div>
-          <h2>Last transactions</h2>
+          <h2 className={styled.title}>Last transactions</h2>
           <div className={styled.tableContainer}>
             <table>
               <thead>

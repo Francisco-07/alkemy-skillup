@@ -1,6 +1,9 @@
 // Styles
 import styled from './transaction.module.css'
 
+// Components
+import Title from '../title/Title'
+
 // Libraries
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
@@ -8,14 +11,17 @@ import Swal from 'sweetalert2'
 
 // Redux
 import { singleTransaction } from '../../features/transaction/transactionSlice'
+import { getSingleUser } from '../../features/user/userSlice'
 import {
   editConcept,
   resetEditConceptStatus,
 } from '../../features/editConcept/editConceptSlice'
+import Btn from '../Btn/Btn'
 
 const Transaction = () => {
   const { transaction } = useSelector((state) => state.transaction)
   const { isSuccess, isError } = useSelector((state) => state.editConcept)
+  const { user } = useSelector((state) => state.user)
   const [concept, setConcept] = useState('Edit')
 
   const conceptArray = ['Payment', 'Bills']
@@ -27,7 +33,8 @@ const Transaction = () => {
 
   useEffect(() => {
     dispatch(singleTransaction(id))
-  }, [dispatch, id, transaction.concept])
+    dispatch(getSingleUser(transaction.to_account_id))
+  }, [dispatch, id, transaction.concept, transaction.to_account_id])
 
   useEffect(() => {
     if (isSuccess) {
@@ -59,11 +66,15 @@ const Transaction = () => {
 
   return (
     <div className={styled.container}>
-      <h1 className={styled.title}>Transaction details</h1>
+      <Title Size={'h1'} text={'Transaction details'} />
       <div className={styled.wrapper}>
         <form onSubmit={tditConcept}>
           <h2>Transaction ID: {transaction.id}</h2>
           <h2>Amount: ${transaction.amount}</h2>
+          <h2>
+            To user: {user.first_name} {user.last_name}
+          </h2>
+          <h2>Email: {user.email}</h2>
           <div>
             <h2>
               Concept:
@@ -84,7 +95,7 @@ const Transaction = () => {
             </h2>
           </div>
           <h2>Transfered to account ID: {transaction.to_account_id}</h2>
-          <button type='submit'>save</button>
+          <Btn type={'submit'} text={'save'} variant={'secondary'} />
         </form>
       </div>
     </div>

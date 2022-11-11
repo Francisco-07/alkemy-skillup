@@ -1,6 +1,9 @@
 // Styles
 import styled from './usersList.module.css'
 
+// Components
+import Title from '../title/Title'
+
 // Libraries
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
@@ -50,9 +53,7 @@ const UsersList = () => {
   }, [dispatch, isError, isSuccess])
   return (
     <div>
-      <div className={styled.title}>
-        <h1>Users List</h1>
-      </div>
+      <Title Size={'h1'} text={'Users list'} />
       <div className={styled.container}>
         <div className={styled.wrapper}>
           {users.data?.map((user, i) => {
