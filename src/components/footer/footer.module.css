@@ -43,13 +43,13 @@
 }
 
 .icons svg {
-  color: var(--white);
+  fill: var(--white);
   font-size: 2rem;
   cursor: pointer;
 }
 
 .icons svg:hover {
-  color: var(--light-pink);
+  fill: var(--light-blue);
 }
 
 .copyright {

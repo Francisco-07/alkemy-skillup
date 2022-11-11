@@ -78,7 +78,7 @@ const Transactions = () => {
                       <td>{t.date.split('T')[0]}</td>
                       <td>done</td>
                       <td>${t.amount}</td>
-                      <td>
+                      <td className={styled.td}>
                         <Link to={`/transaction?id=${t.id}`}>Detalles</Link>
                       </td>
                     </tr>

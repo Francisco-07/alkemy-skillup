@@ -74,12 +74,17 @@ th {
 
 .btn-primary {
   background-color: var(--light-blue);
+  color: var(--white);
 }
 .btn-primary:hover {
-  background-color: var(--grey);
+  opacity: 0.8;
 }
 .btn-secondary {
   background-color: var(--grey);
+  color: var(--white);
+}
+.btn-secondary:hover {
+  background-color: var(--black);
   color: var(--white);
 }
 

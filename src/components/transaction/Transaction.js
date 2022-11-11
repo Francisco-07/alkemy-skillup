@@ -51,7 +51,7 @@ const Transaction = () => {
     if (isSuccess) {
       Swal.fire({
         icon: 'success',
-        title: 'User registered successful',
+        title: 'Concept change saved',
         showConfirmButton: false,
         timer: 1500,
       })

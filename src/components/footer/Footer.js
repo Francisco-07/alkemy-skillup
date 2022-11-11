@@ -1,5 +1,5 @@
 // Icons
-import Logo from '../../assets/icons/FooterLogo'
+import Logo from '../../assets/icons/Logo'
 import {
   FaInstagram,
   FaTwitterSquare,
@@ -18,7 +18,7 @@ const Footer = () => {
     <footer className={styled.container}>
       <footer className={styled.wrapper}>
         <section className={styled.logo}>
-          <Logo />
+          <Logo fill='#fff' width={90} height={90} />
           <h2 className={styled.brand}>AlkyBank</h2>
         </section>
 
