@@ -16,7 +16,7 @@
 }
 
 .usersContainer a {
-  background-color: var(--primary-btn-color);
+  background-color: var(--light-blue);
   text-align: center;
 }
 .wrapper {

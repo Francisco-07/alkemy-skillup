@@ -1,23 +1,11 @@
 :root {
   --main-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
-  --dark-mode-bg: hsla(0, 0%, 9%, 1);
-  --dark-mode-el: hsla(0, 0%, 5%, 1);
-  --dark-mode-text: white;
-  --light-mode-bg: #f6f6f6;
-  --light-mode-el: white;
-  --light-mode-text: black;
-  --light-blue: #111111;
+  --white: #fff;
+  --black: #111111;
+  --grey: #bbb9b9;
+  --light-blue: #58c1f5;
   --light-pink: #f2f2f2;
-  --primary-btn-color: #58c1f5;
-  --primary-btn-color-hover: #c6edfc;
-  --secondary-btn-color: #161616;
-  --secondary-btn-color-hover: #252525;
-  --dark-gray: #252525;
-  --dark-blue: #374151;
-  --card-dark-gray: #292929;
-  --card-light-gray: #2c2c2c;
-  --icon-gray: #7a7a7a;
-  --white: #ffffff;
+  --skeleton: #d9dadb;
   box-sizing: border-box;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -65,7 +53,7 @@ table {
 }
 
 td {
-  border-bottom: 1px solid rgb(199, 199, 199);
+  border-bottom: 1px solid var(--grey);
 }
 
 table,
@@ -85,18 +73,18 @@ th {
 }
 
 .btn-primary {
-  background-color: var(--primary-btn-color);
+  background-color: var(--light-blue);
 }
 .btn-primary:hover {
-  background-color: var(--icon-gray);
+  background-color: var(--grey);
 }
 .btn-secondary {
-  background-color: var(--dark-gray);
-  color: white;
+  background-color: var(--grey);
+  color: var(--white);
 }
 
 input {
-  background-color: #f2f2f2;
+  background-color: var(--light-pink);
   border: none;
   padding: 0.35rem 0.7rem;
   width: 12rem;
@@ -105,6 +93,4 @@ input {
 textarea:focus,
 input:focus {
   outline: none;
-
-  /* background-color: grey; */
 }

@@ -13,6 +13,6 @@
   height: 150px;
   gap: 0.3rem;
   padding: 0.6rem;
-  color: #d9dadb;
-  background-color: #d9dadb;
+  color: var(--skeleton);
+  background-color: var(--skeleton);
 }

@@ -1,9 +1,9 @@
 .container {
   height: 100vh;
-  background-color: var(--light-blue);
+  background-color: var(--black);
   position: fixed;
   top: 0;
-  color: white;
+  color: var(--white);
   padding: 0 2rem;
   transition: 0.5s all ease-in-out;
   z-index: 100;
@@ -15,7 +15,7 @@
   left: 0;
   font-size: 40px;
   font-weight: bolder;
-  color: black;
+  color: var(--black);
   z-index: 200;
 }
 

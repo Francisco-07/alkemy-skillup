@@ -8,7 +8,7 @@
 .tableContainer {
   width: 360px;
   height: 180px;
-  background-color: #d9dadb;
+  background-color: var(--skeleton);
   padding: 2rem;
   border: none;
 }
@@ -16,14 +16,14 @@
   width: 150px;
   height: 150px;
   padding: 1rem 1.4rem;
-  background-color: #d9dadb;
+  background-color: var(--skeleton);
   box-shadow: var(--main-shadow);
 }
 
 .title {
   text-align: center;
-  background-color: #d9dadb;
-  color: #d9dadb;
+  background-color: var(--skeleton);
+  color: var(--skeleton);
 }
 
 .wrapper {
