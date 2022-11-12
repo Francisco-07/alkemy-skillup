@@ -71,7 +71,7 @@ const UsersList = () => {
                   </div>
 
                   <div>{user.email}</div>
-                  <Link to={`/user?id=${user.id}`}>Ver cuenta</Link>
+                  <Link to={`/user?id=${user.id}`}>Transfer</Link>
                 </div>
               )
             })}

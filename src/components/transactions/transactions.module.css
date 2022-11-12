@@ -29,6 +29,10 @@
   font-size: 2rem;
 }
 
+.pagination svg:hover {
+  opacity: 0.7;
+}
+
 .emptyArray {
   height: 100vh;
 }

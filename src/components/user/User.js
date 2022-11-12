@@ -42,6 +42,7 @@ const User = () => {
         title: 'Deposit successful',
         confirmButtonColor: '#58c1f5',
       })
+      setTopup(0)
     }
     dispatch(resetAccountStatus())
   }, [isError, dispatch, isSuccess])

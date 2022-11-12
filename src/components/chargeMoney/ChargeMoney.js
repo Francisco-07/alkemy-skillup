@@ -35,6 +35,7 @@ const ChargeMoney = () => {
         title: 'Deposit successful',
         confirmButtonColor: '#58c1f5',
       })
+      setTopup(0)
     }
     dispatch(resetAccountStatus())
   }, [isError, dispatch, isSuccess])
@@ -76,7 +77,7 @@ const ChargeMoney = () => {
             />
           </div>
           <div>
-            <Btn type={'submit'} variant={'primary'} text='Deposit' />
+            <Btn type={'submit'} variant={'secondary'} text='Deposit' />
           </div>
         </form>
       </div>

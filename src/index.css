@@ -82,6 +82,7 @@ th {
 .btn-secondary {
   background-color: var(--grey);
   color: var(--white);
+  padding: 0.7rem 1.4rem;
 }
 .btn-secondary:hover {
   background-color: var(--black);

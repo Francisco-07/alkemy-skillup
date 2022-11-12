@@ -70,7 +70,7 @@ const Dashboard = () => {
             <div className={styled.box}>
               <BsWallet />
               <h4>Total balance</h4>
-              <div>{!myCash ? 'loading' : `$${myCash}`}</div>
+              <div>{!myCash ? '$0' : `$${myCash}`}</div>
             </div>
             <div className={styled.box}>
               <AiOutlineDollarCircle />
