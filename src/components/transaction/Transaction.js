@@ -46,6 +46,7 @@ const Transaction = () => {
       Swal.fire({
         icon: 'error',
         title: 'Something went wrong!',
+        confirmButtonColor: '#58c1f5',
       })
     }
     if (isSuccess) {

@@ -33,12 +33,14 @@ const User = () => {
       Swal.fire({
         icon: 'error',
         title: 'Deposit rejected',
+        confirmButtonColor: '#58c1f5',
       })
     }
     if (isSuccess) {
       Swal.fire({
         icon: 'success',
         title: 'Deposit successful',
+        confirmButtonColor: '#58c1f5',
       })
     }
     dispatch(resetAccountStatus())
@@ -50,6 +52,7 @@ const User = () => {
       Swal.fire({
         icon: 'error',
         title: 'Put an amount of money',
+        confirmButtonColor: '#58c1f5',
       })
       return
     }

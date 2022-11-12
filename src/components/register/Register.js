@@ -38,6 +38,7 @@ const Register = () => {
       Swal.fire({
         icon: 'error',
         title: 'Something went wrong!',
+        confirmButtonColor: '#58c1f5',
       })
     }
     if (isSuccess) {
@@ -82,6 +83,7 @@ const Register = () => {
       Swal.fire({
         icon: 'error',
         title: 'Complete all fields',
+        confirmButtonColor: '#58c1f5',
       })
       return
     }
@@ -89,6 +91,7 @@ const Register = () => {
       Swal.fire({
         icon: 'error',
         title: 'Invalid email',
+        confirmButtonColor: '#58c1f5',
       })
       return
     }

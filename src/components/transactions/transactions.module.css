@@ -28,3 +28,7 @@
   fill: var(--black);
   font-size: 2rem;
 }
+
+.emptyArray {
+  height: 100vh;
+}

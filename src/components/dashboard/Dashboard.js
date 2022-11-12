@@ -83,31 +83,35 @@ const Dashboard = () => {
               <div>${totalPayments}</div>
             </div>
           </div>
-          <div>
-            <h2 className={styled.title}>Last transactions</h2>
-            <div className={styled.tableContainer}>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Concept</th>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>Amount</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {transactions.data?.slice(0, 4).map((t, i) => (
-                    <tr key={i}>
-                      <td>{t.concept}</td>
-                      <td>{t.date.split('T')[0]}</td>
-                      <td>done</td>
-                      <td>${t.amount}</td>
+          {transactions.data.length === 0 ? (
+            <h2 className={styled.title}>No transactions found</h2>
+          ) : (
+            <div>
+              <h2 className={styled.title}>Last transactions</h2>
+              <div className={styled.tableContainer}>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Concept</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                      <th>Amount</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {transactions.data?.slice(0, 4).map((t, i) => (
+                      <tr key={i}>
+                        <td>{t.concept}</td>
+                        <td>{t.date.split('T')[0]}</td>
+                        <td>done</td>
+                        <td>${t.amount}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       )}
     </>

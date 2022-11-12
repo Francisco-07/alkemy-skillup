@@ -35,6 +35,7 @@ function Login() {
       Swal.fire({
         icon: 'error',
         title: 'Invalid credentials!',
+        confirmButtonColor: '#58c1f5',
       })
       dispatch(reset())
       return
@@ -43,6 +44,7 @@ function Login() {
       Swal.fire({
         icon: 'success',
         title: 'Login successful',
+
         showConfirmButton: false,
         timer: 1500,
       })
@@ -71,6 +73,7 @@ function Login() {
       Swal.fire({
         icon: 'error',
         title: 'Invalid credentials!',
+        confirmButtonColor: '#58c1f5',
       })
       return
     }
@@ -78,6 +81,7 @@ function Login() {
       Swal.fire({
         icon: 'error',
         title: 'Invalid credentials!',
+        confirmButtonColor: '#58c1f5',
       })
       return
     } else {
