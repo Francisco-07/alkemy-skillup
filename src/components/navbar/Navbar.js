@@ -63,48 +63,52 @@ const Navbar = () => {
               <h5>Manage</h5>
               {user ? (
                 <ul>
-                  <li>
-                    <Link to='/'>
-                      <RiDashboardFill />
+                  <li className={styled.li}>
+                    <Link to='/' className={styled.link}>
+                      <RiDashboardFill className={styled.icon} />
                       Dashboard
                     </Link>
                   </li>
-                  <li>
-                    <Link to='/transactions'>
-                      <MdNotes />
+                  <li className={styled.li}>
+                    <Link to='/transactions' className={styled.link}>
+                      <MdNotes className={styled.icon} />
                       Transactions
                     </Link>
                   </li>
-                  <li>
-                    <Link to='/charge'>
-                      <GoDiffAdded />
+                  <li className={styled.li}>
+                    <Link to='/charge' className={styled.link}>
+                      <GoDiffAdded className={styled.icon} />
                       Add money
                     </Link>
                   </li>
-                  <li>
-                    <Link to='/users'>
-                      <IoIosSend />
+                  <li className={styled.li}>
+                    <Link to='/users' className={styled.link}>
+                      <IoIosSend className={styled.icon} />
                       Send money
                     </Link>
                   </li>
-                  <li>
-                    <Link to={'/login'} onClick={onLogout}>
-                      <ImExit />
+                  <li className={styled.li}>
+                    <Link
+                      to={'/login'}
+                      onClick={onLogout}
+                      className={styled.link}
+                    >
+                      <ImExit className={styled.icon} />
                       Logout
                     </Link>
                   </li>
                 </ul>
               ) : (
                 <ul>
-                  <li>
-                    <Link to='/register'>
-                      <FiUserPlus />
+                  <li className={styled.li}>
+                    <Link to='/register' className={styled.link}>
+                      <FiUserPlus className={styled.icon} />
                       Register
                     </Link>
                   </li>
-                  <li>
-                    <Link to='/login'>
-                      <ImEnter />
+                  <li className={styled.li}>
+                    <Link to='/login' className={styled.link}>
+                      <ImEnter className={styled.icon} />
                       Login
                     </Link>
                   </li>

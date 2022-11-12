@@ -42,6 +42,14 @@
   align-items: center;
   gap: 0.8rem;
 }
+
 .container ul svg {
   fill: var(--white);
+}
+
+.li:hover .icon {
+  fill: var(--light-blue);
+}
+.li:hover .link {
+  color: var(--light-blue);
 }

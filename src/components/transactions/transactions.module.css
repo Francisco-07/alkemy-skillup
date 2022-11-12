@@ -13,3 +13,18 @@
 .td:hover {
   opacity: 0.8;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.disabledIcon {
+  opacity: 0.5;
+}
+
+.pagination svg {
+  fill: var(--black);
+  font-size: 2rem;
+}

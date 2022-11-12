@@ -34,6 +34,15 @@
 }
 .pagination {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.disabledIcon {
+  opacity: 0.5;
+}
+
+.pagination svg {
+  fill: var(--black);
+  font-size: 2rem;
 }

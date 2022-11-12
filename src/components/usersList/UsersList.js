@@ -1,6 +1,9 @@
 // Styles
 import styled from './usersList.module.css'
 
+// Icons
+import { BsArrowLeftCircle, BsArrowRightCircle } from 'react-icons/bs'
+
 // Components
 import Title from '../title/Title'
 import SkeletonUsers from '../skeleton/SkeletonUsers'
@@ -75,18 +78,30 @@ const UsersList = () => {
           </div>
         )}
       </div>
+
       <div className={styled.pagination}>
-        <div>pagination</div>
-        <div>
-          {prevPage === undefined ? null : prevPage === '1' ? (
-            <Link to={`/users`}>back</Link>
-          ) : (
-            <Link to={`/users?page=${prevPage}`}>back</Link>
-          )}
-          {nextPage === undefined ? null : (
-            <Link to={`/users?page=${nextPage}`}>next</Link>
-          )}
-        </div>
+        {prevPage === undefined ? (
+          <div className={styled.disabledIcon}>
+            <BsArrowLeftCircle />
+          </div>
+        ) : prevPage === '1' ? (
+          <Link to={`/users`}>
+            <BsArrowLeftCircle />
+          </Link>
+        ) : (
+          <Link to={`/users?page=${prevPage}`}>
+            <BsArrowLeftCircle />
+          </Link>
+        )}
+        {nextPage === undefined ? (
+          <div className={styled.disabledIcon}>
+            <BsArrowRightCircle />
+          </div>
+        ) : (
+          <Link to={`/users?page=${nextPage}`} className={styled.icon}>
+            <BsArrowRightCircle />
+          </Link>
+        )}
       </div>
     </div>
   )

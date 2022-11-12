@@ -3,6 +3,9 @@ import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link, useSearchParams } from 'react-router-dom'
 
+// Icons
+import { BsArrowLeftCircle, BsArrowRightCircle } from 'react-icons/bs'
+
 // Components
 import Title from '../title/Title'
 import SkeletonTransactions from '../skeleton/SkeletonTransactions'
@@ -89,15 +92,28 @@ const Transactions = () => {
         </div>
       </div>
 
-      <div>
-        <div>pagination</div>
-        {prevPage === undefined ? null : prevPage === '1' ? (
-          <Link to={`/transactions`}>back</Link>
+      <div className={styled.pagination}>
+        {prevPage === undefined ? (
+          <div className={styled.disabledIcon}>
+            <BsArrowLeftCircle />
+          </div>
+        ) : prevPage === '1' ? (
+          <Link to={`/transactions`}>
+            <BsArrowLeftCircle />
+          </Link>
         ) : (
-          <Link to={`/transactions?page=${prevPage}`}>back</Link>
+          <Link to={`/transactions?page=${prevPage}`}>
+            <BsArrowLeftCircle />
+          </Link>
         )}
-        {nextPage === undefined ? null : (
-          <Link to={`/transactions?page=${nextPage}`}>next</Link>
+        {nextPage === undefined ? (
+          <div className={styled.disabledIcon}>
+            <BsArrowRightCircle />
+          </div>
+        ) : (
+          <Link to={`/transactions?page=${nextPage}`} className={styled.icon}>
+            <BsArrowRightCircle />
+          </Link>
         )}
       </div>
     </>
